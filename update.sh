@@ -1,5 +1,7 @@
 #!/bin/bash
 . build/envsetup.sh
+echo " "
+echo " "
 echo ================================
 echo "1. Update sources"
 echo "2. Update device files"

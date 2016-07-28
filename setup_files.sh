@@ -1,5 +1,7 @@
 #!/bin/bash
 . build/envsetup.sh
+echo " "
+echo " " 
 echo "Setup vendor and device specific files? [Y/N] "
 read menu
 case "$menu" in
