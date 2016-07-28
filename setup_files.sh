@@ -4,8 +4,7 @@ read menu
 case "$menu" in
   y|Y) echo "Setuping device specific files...."
   cd device && mkdir sony && cd sony
-  git clone git@github.com:Sudokamikaze/android_device_sony_taoshan.git
-  mv android_device_sony_taoshan taoshan
+  git clone git@github.com:Sudokamikaze/android_device_sony_taoshan.git taoshan
   cd ../..
   echo "Setuping vendor files...."
   cd vendor && mkdir sony && cd sony
@@ -13,6 +12,7 @@ case "$menu" in
   cd proprietary_vendor_sony
   mv taoshan ../ && cd ..
   rm -rf proprietary_vendor_sony
+  breakfast cm_taoshan-userdebug
   echo Done!
   ;;
   n|N) echo "Exiting..."
