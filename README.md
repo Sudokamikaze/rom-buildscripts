@@ -19,6 +19,8 @@ Open in your text editor `build_taoshan.sh` on top of the file you see TUNABLE s
 
 `CCACHESIZE=10 # Define size of cache in GB`
 
+`IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux`
+
 `# ===========================================`
 
 
