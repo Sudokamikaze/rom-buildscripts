@@ -10,10 +10,16 @@ then read FAQ
 #### FAQ
 
 Open in your text editor `build_taoshan.sh` on top of the file you see TUNABLE section.
-`# ==================TUNABLE==================
-export BLOCK_BASED_OTA=false # Remove this if you don't want to disable BLOCK Based SHIT!
-CACHEDIRPATH=/ccache/RR/ # Define your dir for ccache here
-CCACHESIZE=10 # Define size of cache in GB
-# ===========================================`
+
+`# ==================TUNABLE==================`
+
+`export BLOCK_BASED_OTA=false # Remove this if you don't want to disable BLOCK Based SHIT!`
+
+`CACHEDIRPATH=/ccache/RR/ # Define your dir for ccache here`
+
+`CCACHESIZE=10 # Define size of cache in GB`
+
+`# ===========================================`
+
 
 Write your values to this variables
