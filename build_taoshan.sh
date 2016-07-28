@@ -1,8 +1,8 @@
 #!/bin/bash
 # ==================TUNABLE==================
-export BLOCK_BASED_OTA=false # Remove this if you don't want to disable BLOCK Based SHIT!
+export BLOCK_BASED_OTA=false # Remove this string if you don't want to disable BLOCK Baseds SHIT!
 CACHEDIRPATH=/ccache/RR/ # Define your dir for ccache here
-CCACHESIZE=10 # Define size of cache in GB 
+CCACHESIZE=10 # Define size of cache in GB
 # ===========================================
 
 # PREPARE STAGE
