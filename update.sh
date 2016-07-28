@@ -21,7 +21,7 @@ case "$menu" in
   ;;
   3) echo "Updating vendor files..."
   cd vendor/sony && rm -rf taoshan
-  git clone git@github.com:TheMuppets/proprietary_vendor_sony.git
+  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git
   cd proprietary_vendor_sony
   mv taoshan ../ && cd ..
   rm -rf proprietary_vendor_sony
