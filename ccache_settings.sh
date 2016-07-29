@@ -1,5 +1,5 @@
 #!/bin/bash
-eval $(grep CACHEDIRPATH= ./build_kamikaze.sh)
+eval $(grep CACHEDIRPATH= ./build_taoshan.sh)
 
 export USE_CCACHE=1
 export CCACHE_DIR=$CACHEDIRPATH.ccache
