@@ -1,4 +1,10 @@
 #!/bin/bash
+eval $(grep CCACHEENABLE= ./build_taoshan.sh)
+if [ "$CCACHEENABLE" != 'true' ]; then
+    echo 'Error: CCache disabled in build_taoshan. Exiting...'
+    exit 1
+fi
+
 eval $(grep CACHEDIRPATH= ./build_taoshan.sh)
 
 export USE_CCACHE=1
@@ -11,7 +17,7 @@ echo ================================
 echo -n "Choose an action: "
 read menu
 case "$menu" in
-  1) echo " " 
+  1) echo " "
   prebuilts/misc/linux-x86/ccache/ccache -s
   ;;
   2) echo -n "Enter size in GB: "
