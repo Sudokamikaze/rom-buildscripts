@@ -4,6 +4,7 @@ export BLOCK_BASED_OTA=false # Remove this string if you don't want to disable B
 CACHEDIRPATH=/ccache/RR/ # Define your dir for ccache here
 CCACHESIZE=10 # Define size of cache in GB
 IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
+CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
 # ===========================================
 
 # PREPARE STAGE
@@ -15,9 +16,11 @@ ln -s /usr/lib/python2.7/* /home/kitt/Git/tmp/RR/venv/lib/python2.7/
 source venv/bin/activate
 fi
 
+if [ $CCACHEENABLE == true ]; then
 export USE_CCACHE=1
 export CCACHE_DIR="$CACHEDIRPATH".ccache
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
+fi
 
 # BUILD STAGE
 croot
