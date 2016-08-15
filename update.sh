@@ -2,11 +2,12 @@
 . build/envsetup.sh
 echo " "
 echo " "
-echo ================================
+echo ========================================
 echo "1. Update sources"
 echo "2. Update device files"
 echo "3. Update vendor files"
-echo ================================
+echo "4. Update all(sources,device,vendor)"
+echo ========================================
 echo -n "Choose an option: "
 read menu
 case "$menu" in
@@ -22,6 +23,21 @@ case "$menu" in
   echo "Done!"
   ;;
   3) echo "Updating vendor files..."
+  cd vendor/sony && rm -rf taoshan
+  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git
+  cd proprietary_vendor_sony
+  mv taoshan ../ && cd ..
+  rm -rf proprietary_vendor_sony
+  breakfast cm_taoshan-userdebug
+  echo "Done!"
+  ;;
+  4) echo "Updating all"
+  make clean
+  repo sync --force-sync
+  cd device/sony && rm -rf taoshan
+  git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
+  cd ../../
+  breakfast cm_taoshan-userdebug
   cd vendor/sony && rm -rf taoshan
   git clone https://github.com/TheMuppets/proprietary_vendor_sony.git
   cd proprietary_vendor_sony
