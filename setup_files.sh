@@ -15,6 +15,7 @@ case "$menu" in
   cd proprietary_vendor_sony
   mv taoshan ../ && cd ..
   rm -rf proprietary_vendor_sony
+  cd ../
   breakfast cm_taoshan-userdebug
   echo Done!
   ;;
