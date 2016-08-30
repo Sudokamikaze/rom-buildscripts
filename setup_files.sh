@@ -11,7 +11,7 @@ case "$menu" in
   cd ../..
   echo "Setuping vendor files...."
   cd vendor && mkdir sony && cd sony
-  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git
+  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git -b cm-13.0
   cd proprietary_vendor_sony
   mv taoshan ../ && cd ..
   rm -rf proprietary_vendor_sony
