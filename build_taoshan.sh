@@ -12,7 +12,7 @@ CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don'
 
 if [ $IFARCHLINUX == true ]; then
 virtualenv2 venv
-ln -s /usr/lib/python2.7/* /home/kitt/Git/tmp/RR/venv/lib/python2.7/
+ln -s /usr/lib/python2.7/* /home/$USER/Git/tmp/RR/venv/lib/python2.7/
 source venv/bin/activate
 fi
 
