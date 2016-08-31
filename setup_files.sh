@@ -1,7 +1,7 @@
 #!/bin/bash
 . build/envsetup.sh
 echo " "
-echo " " 
+echo " "
 echo "Setup vendor and device specific files? [Y/N] "
 read menu
 case "$menu" in
@@ -10,8 +10,8 @@ case "$menu" in
   git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
   cd ../..
   echo "Setuping vendor files...."
-  cd vendor && mkdir sony && cd sony
-  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git -b cm-13.0
+  cd vendor
+  git clone https://github.com/Sudokamikaze/proprietary_vendor_sony.git sony -b taoshan
   cd proprietary_vendor_sony
   mv taoshan ../ && cd ..
   rm -rf proprietary_vendor_sony
