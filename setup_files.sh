@@ -13,7 +13,7 @@ case "$menu" in
   cd ..
   echo "Setuping vendor files...."
   cd vendor
-  git clone https://github.com/Sudokamikaze/proprietary_vendor_sony.git sony -b taoshan
+  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git sony -b cm-13.0
   cd ../
   breakfast cm_taoshan-userdebug
   echo Done!
