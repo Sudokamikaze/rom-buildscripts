@@ -7,7 +7,7 @@ read menu
 case "$menu" in
   y|Y) echo "Setuping device specific files...."
   breakfast taoshan
-  cd device
+  cd device/sony
   rm -rf taoshan
   git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
   cd ..
