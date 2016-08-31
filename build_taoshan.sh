@@ -28,4 +28,5 @@ fi
 
 # BUILD STAGE
 croot
-. build/envsetup.sh && brunch taoshan
+. build/envsetup.sh
+breakfast taoshan && mka bacon
