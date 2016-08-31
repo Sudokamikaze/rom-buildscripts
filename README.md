@@ -10,3 +10,9 @@ then read FAQ
 #### FAQ
 
 Open in your text editor `build_taoshan.sh` on top of the file you see TUNABLE section.
+
+
+
+##### TO-DO
+
+Add support for grouper(nexus 7 2012)
