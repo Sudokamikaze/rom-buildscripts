@@ -10,7 +10,7 @@ case "$menu" in
   cd device
   rm -rf taoshan
   git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
-  cd ../..
+  cd ..
   echo "Setuping vendor files...."
   cd vendor
   git clone https://github.com/Sudokamikaze/proprietary_vendor_sony.git sony -b taoshan
