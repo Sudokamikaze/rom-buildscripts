@@ -6,7 +6,9 @@ echo "Setup vendor and device specific files? [Y/N] "
 read menu
 case "$menu" in
   y|Y) echo "Setuping device specific files...."
-  cd device && mkdir sony && cd sony
+  breakfast taoshan
+  cd device
+  rm -rf taoshan
   git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
   cd ../..
   echo "Setuping vendor files...."
