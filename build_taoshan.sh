@@ -28,4 +28,4 @@ fi
 # BUILD STAGE
 croot
 . build/envsetup.sh
-breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
+breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' mka taoshan
