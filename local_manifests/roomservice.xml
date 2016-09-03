@@ -5,4 +5,6 @@
   <project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
   <project name="CyanogenMod/android_kernel_sony_msm8930" path="kernel/sony/msm8930" remote="github" />
   <project name="CyanogenMod/android_external_stlport" path="external/stlport" remote="github" />
+  <project name="Sudokamikaze/android_device_asus_grouper" path="device/asus/grouper" remote="github" revision="evilsu" />
+  <project name="CyanogenMod/android_kernel_asus_grouper" path="kernel/asus/grouper" remote="github" />
 </manifest>
