@@ -14,7 +14,7 @@ case "$menu" in
   echo "Setuping vendor files...."
   cd vendor
   git clone https://github.com/TheMuppets/proprietary_vendor_sony.git sony -b cm-13.0
-  cd ../../
+  cd ../
   breakfast cm_taoshan-userdebug
   echo Done!
   ;;
