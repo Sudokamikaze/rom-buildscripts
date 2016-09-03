@@ -9,10 +9,7 @@ then read FAQ
 
 #### FAQ
 
-Open in your text editor `build_taoshan.sh` on top of the file you see TUNABLE section.
+Open in your text editor `build_rom.sh` on top of the file you see TUNABLE section.
 
-
-
-##### TO-DO
-
-Add support for grouper(nexus 7 2012)
+This script support only taoshan and grouper, if u want to build for grouper or taoshan
+open `build_rom.sh` and edit DEVICE section

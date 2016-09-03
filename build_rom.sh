@@ -8,6 +8,11 @@ IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your
 CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
 # ===========================================
 
+# ==================DEVICE===================
+CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
+# ===========================================
+
+
 # PREPARE STAGE
 . build/envsetup.sh
 
@@ -27,5 +32,10 @@ fi
 
 # BUILD STAGE
 croot
-. build/envsetup.sh
+if [ $CURRENTDEVICE == taoshan ]; then
 breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' mka taoshan
+elif [ $CURRENTDEVICE == grouper ]; then
+breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka grouper
+else
+  echo "Error"
+fi
