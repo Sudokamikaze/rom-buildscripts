@@ -1,4 +1,4 @@
-# taoshan-buildscripts
+# rom-buildscripts
 Scripts for building/setuping/checking roms on taoshan
 
 # Setup
