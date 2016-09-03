@@ -2,20 +2,16 @@
 . build/envsetup.sh
 echo " "
 echo " "
-echo "Setup vendor and device specific files? [Y/N] "
+echo -n "Setup vendor and device specific files? [Y/N] "
 read menu
 case "$menu" in
-  y|Y) echo "Setuping device specific files...."
-  breakfast taoshan
-  cd device/sony
-  rm -rf taoshan
-  git clone https://github.com/Sudokamikaze/android_device_sony_taoshan.git taoshan
-  cd ../../
-  echo "Setuping vendor files...."
+  y|Y) echo "Creating manifest..."
+  cp local_manifests/taoshan.xml .repo/local_manifests/roomservice.xml
+  echo "Setuping vendor files..."
   cd vendor
   git clone https://github.com/TheMuppets/proprietary_vendor_sony.git sony -b cm-13.0
   cd ../
-  breakfast cm_taoshan-userdebug
+  breakfast taoshan
   echo Done!
   ;;
   n|N) echo "Exiting..."
