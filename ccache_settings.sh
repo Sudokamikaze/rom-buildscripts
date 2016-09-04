@@ -1,11 +1,11 @@
 #!/bin/bash
-eval $(grep CCACHEENABLE= ./build_taoshan.sh)
+eval $(grep CCACHEENABLE= ./build_rom.sh)
 if [ "$CCACHEENABLE" != 'true' ]; then
     echo 'Error: CCache disabled in build_taoshan. Exiting...'
     exit 1
 fi
 
-eval $(grep CACHEDIRPATH= ./build_taoshan.sh)
+eval $(grep CACHEDIRPATH= ./build_rom.sh)
 
 export USE_CCACHE=1
 export CCACHE_DIR="$CACHEDIRPATH".ccache
