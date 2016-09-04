@@ -33,9 +33,9 @@ fi
 # BUILD STAGE
 croot
 if [ $CURRENTDEVICE == taoshan ]; then
-breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' mka taoshan
+breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' brunch taoshan
 elif [ $CURRENTDEVICE == grouper ]; then
-breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka grouper
+breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' brunch grouper
 else
   echo "Error"
 fi
