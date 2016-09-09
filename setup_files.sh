@@ -28,20 +28,12 @@ read menu
 case "$menu" in
   y|Y) echo "Creating manifest..."
   mv local_manifests .repo/
-  echo "Setuping vendor files..."
-  cd vendor
+  repo sync -j5 --force-sync
   if [ $device == grouper ]; then
-  git clone https://github.com/TheMuppets/proprietary_vendor_asus.git asus -b cm-13.0
-  cd ../
   breakfast grouper
 elif [ $device == taoshan ]; then
-  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git sony -b cm-13.0
-  cd ../
   breakfast taoshan
 elif [ $device == both ]; then
-  git clone https://github.com/TheMuppets/proprietary_vendor_sony.git sony -b cm-13.0
-  git clone https://github.com/TheMuppets/proprietary_vendor_asus.git asus -b cm-13.0
-  cd ..
   breakfast taoshan
   breakfast grouper
 fi
