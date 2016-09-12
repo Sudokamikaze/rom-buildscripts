@@ -1,5 +1,16 @@
 #!/bin/bash
 . build/envsetup.sh
+
+#  EDIT THERE !!
+romver=lp # If u define there "lp" it will download patch to enable/disable block based from cm 13
+# ==============
+
+if [ $romver == lp ]; then
+curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
+cd core/
+patch < ../fffc2a16c61077abf583df87f94000356f172b77.patch
+fi
+
 echo " "
 echo " "
 echo "======================"
