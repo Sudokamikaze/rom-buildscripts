@@ -11,6 +11,20 @@ cd core/
 patch < ../fffc2a16c61077abf583df87f94000356f172b77.patch
 fi
 
+function prepare{
+  mv local_manifests .repo/
+  repo sync -j 5 --force-sync
+  case "$device" in
+  grouper) breakfast grouper
+  ;;
+  taoshan) breakfast taoshan
+  ;;
+  both) breakfast taoshan && breakfast grouper
+  ;;
+esac
+}
+
+
 echo " "
 echo " "
 echo "======================"
@@ -36,22 +50,10 @@ esac
 
 echo -n "Setup vendor and device specific files? [Y/N] "
 read menu
-case "$menu" in
-  y|Y) echo "Creating manifest..."
-  mv local_manifests .repo/
-  repo sync -j5 --force-sync
-  if [ $device == grouper ]; then
-  breakfast grouper
-elif [ $device == taoshan ]; then
-  breakfast taoshan
-elif [ $device == both ]; then
-  breakfast taoshan
-  breakfast grouper
+if [ $menu == y ]; then
+  prepare
+elif [ $menu == Y ]; then
+  prepare
+else
+exit
 fi
-  echo Done!
-  ;;
-  n|N) echo "Exiting..."
-  exit
-  ;;
-  *) echo "Error"
-esac
