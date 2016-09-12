@@ -5,11 +5,13 @@
 romver=default # If u define there "lp" it will download patch to enable/disable block based from cm 13
 # ==============
 
+function blockpatch{
 if [ $romver == lp ]; then
 curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
-cd core/
-patch < ../fffc2a16c61077abf583df87f94000356f172b77.patch
+cd build/core
+patch < ../../fffc2a16c61077abf583df87f94000356f172b77.patch
 fi
+}
 
 function prepare{
   mv local_manifests .repo/
@@ -52,8 +54,10 @@ echo -n "Setup vendor and device specific files? [Y/N] "
 read menu
 if [ $menu == y ]; then
   prepare
+  blockpatch
 elif [ $menu == Y ]; then
   prepare
+  blockpatch
 else
 exit
 fi
