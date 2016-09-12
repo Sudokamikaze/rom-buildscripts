@@ -2,7 +2,7 @@
 . build/envsetup.sh
 
 #  EDIT THERE !!
-romver=lp # If u define there "lp" it will download patch to enable/disable block based from cm 13
+romver=default # If u define there "lp" it will download patch to enable/disable block based from cm 13
 # ==============
 
 if [ $romver == lp ]; then
