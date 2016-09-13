@@ -37,13 +37,13 @@ fi
 
 # BUILD STAGE
 croot
-if [ $CURRENTDEVICE == taoshan ]; then
-breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' brunch taoshan
-elif [ $CURRENTDEVICE == grouper ]; then
-breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' brunch grouper
-else
-  echo "Error"
-fi
+case "$CURRENTDEVICE" in
+  taoshan) breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' brunch taoshan
+  ;;
+  grouper) breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' brunch grouper
+  ;;
+  *) echo "Error, corrent typo"
+esac
 
 if [ $INTELCORECPU == true ]; then
 sudo cpupower frequency-set -g powersave
