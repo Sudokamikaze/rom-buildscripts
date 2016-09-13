@@ -6,7 +6,7 @@ CACHEDIRPATH=/ccache/android/ # Define your dir for ccache here
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
 IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
 CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
-INTELCORECPU=true # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
+INTELCORECPU=false # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
 # ===========================================
 
 # ==================DEVICE===================
