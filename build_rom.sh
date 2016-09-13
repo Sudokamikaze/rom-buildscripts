@@ -13,6 +13,10 @@ INTELCORECPU=true # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
 # ===========================================
 
+if [ $INTELCORECPU == true ]; then
+echo "Sudo is need to switch to performance governor"
+sudo cpupower frequency-set -g performance
+fi
 
 # PREPARE STAGE
 . build/envsetup.sh
@@ -31,9 +35,7 @@ export CCACHE_DIR="$CACHEDIRPATH".ccache
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
-if [ $INTELCORECPU == true ]; then
-sudo cpupower frequency-set -g performance
-fi
+
 
 # BUILD STAGE
 croot
@@ -46,5 +48,6 @@ case "$CURRENTDEVICE" in
 esac
 
 if [ $INTELCORECPU == true ]; then
+echo "Sudo is need to switch to powersave governor"
 sudo cpupower frequency-set -g powersave
 fi
