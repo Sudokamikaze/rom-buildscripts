@@ -5,9 +5,15 @@ if [ "x$(id -u)" != 'x0' ]; then
 fi
 
 CRITTEMP=55
+DATE=$(date +%H:%M:%S)
 
 function check {
+echo "---------Sensors---------"
+sensors | grep °C
+echo "---------HDD---------"
+echo -n "Current temperature: "
 temperature=$(hddtemp /dev/sda | cut -d : -f3 | sed 's/[^0-9]*//g')
+echo $temperature"°C"
 }
 
 function overheat {
@@ -20,12 +26,16 @@ else
 fi
 }
 
-echo "Starting..."
+echo "Check time:" $DATE
+echo " "
+check
 again=yes
 while [ "$again" = "yes" ]
 do
 sleep 3m
+echo "  "
+echo "  "
 check
 overheat
-echo "Current temp: " $temperature
+
 done
