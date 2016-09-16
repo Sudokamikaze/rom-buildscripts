@@ -8,17 +8,16 @@ IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your
 CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
 INTELCORECPU=false # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
 TWODISK=true # Define "true" here to activate var below
-PATHTOTWO=/mnt/hdd/RR/out # Define here dir on extrenal HDD/SSD to paralell I/O load
+PATHTOTWO=/mnt/hdd # Define here dir on extrenal HDD/SSD to paralell I/O load
 # ===========================================
 
 # ==================DEVICE===================
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
 # ===========================================
 
-if [ $INTELCORECPU == true ]; then
-echo "Sudo is need to switch to performance governor"
-sudo cpupower frequency-set -g performance
-fi
+touch /tmp/building_rom.pid
+echo "Starting sudocore..."
+sudo ./sudocore.sh &
 
 # PREPARE STAGE
 . build/envsetup.sh
@@ -38,7 +37,8 @@ prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
 if [ $TWODISK == true ]; then
-export OUT_DIR_COMMON_BASE=$PATHTOTWO
+export OUT_DIR_COMMON_BASE="$PATHTOTWO"/RR/out
+fi
 
 # BUILD STAGE
 croot
@@ -50,7 +50,6 @@ case "$CURRENTDEVICE" in
   *) echo "Error, corrent typo"
 esac
 
-if [ $INTELCORECPU == true ]; then
-echo "Sudo is need to switch to powersave governor"
-sudo cpupower frequency-set -g powersave
+rm /tmp/building_rom.pid
+udisksctl power-off -b /dev/sdb
 fi
