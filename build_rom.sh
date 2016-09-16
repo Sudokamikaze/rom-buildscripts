@@ -9,9 +9,8 @@ CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don'
 INTELCORECPU=false # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
 TWODISK=true # Define "true" here to activate var below
 PATHTOTWO=/mnt/hdd/RR/out # Define here dir on extrenal HDD/SSD to paralell I/O load
-
 # ===========================================
--
+
 # ==================DEVICE===================
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
 # ===========================================
