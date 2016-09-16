@@ -6,6 +6,7 @@ if [ $romver == lp ]; then
 curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
 cd build/core
 patch < ../../fffc2a16c61077abf583df87f94000356f172b77.patch
+cd ../../ && rm fffc2a16c61077abf583df87f94000356f172b77.patch
 fi
 }
 
