@@ -51,5 +51,7 @@ case "$CURRENTDEVICE" in
 esac
 
 rm /tmp/building_rom.pid
+sleep 3m
+echo "Wait a second..."
 udisksctl power-off -b /dev/sdb
 fi
