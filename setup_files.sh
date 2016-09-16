@@ -1,20 +1,6 @@
 #!/bin/bash
 . build/envsetup.sh
 
-function blockpatch {
-if [ $romver == lp ]; then
-curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
-cd build/core
-patch < ../../fffc2a16c61077abf583df87f94000356f172b77.patch
-cd ../../ && rm fffc2a16c61077abf583df87f94000356f172b77.patch
-fi
-}
-
-function rrpatch {
-cd build/core/clang/
-patch < ../../../patches/fix_assembler_on_rr.patch
-}
-
 function prepare {
   mkdir -p .repo/local_manifests
   if [ $romver == lp ]; then
@@ -76,19 +62,6 @@ case "$choise" in
   *) echo Error
   ;;
 esac
-
-echo " "
-echo " "
-
-echo -n "Do u run this script on resurrection remix files?: "
-read rr
-if [ $rr == y ]; then
-  rrpatch
-elif [ $rr == Y ]; then
-  rrpatch
-else
- echo " "
-fi
 
 echo -n "Setup vendor and device specific files? [Y/N] "
 read menu
