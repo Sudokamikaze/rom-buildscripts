@@ -12,9 +12,9 @@ fi
 function prepare {
   mkdir -p .repo/local_manifests
   if [ $romver == lp ]; then
-  mv local_manifests/roomservice_lp.xml .repo/roomservice.xml
+  mv local_manifests/roomservice_lp.xml .repo/local_manifests/roomservice.xml
 elif [ $romver == mm ]; then
-  mv local_manifests/roomservice_mm.xml .repo/roomservice.xml
+  mv local_manifests/roomservice_mm.xml .repo/local_manifests/roomservice.xml
 fi
   repo sync -j 5 --force-sync
   case "$device" in
