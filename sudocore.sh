@@ -1,12 +1,9 @@
 #!/bin/bash
 echo "Sudocore started"
-eval $(grep INTELCORECPU= ./build_rom.sh)
 
 function exitcore {
 again=no
-if [ $INTELCORECPU == true ]; then
 cpupower frequency-set -g powersave
-fi
 umount /dev/sdb
 udisksctl power-off -b /dev/sdb
 }
