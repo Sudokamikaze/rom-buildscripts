@@ -1,5 +1,4 @@
 #!/bin/bash
-PIDFILE=/tmp/building_rom.pid
 echo "Sudo is need to be root and wait build_rom.sh process end"
 eval $(grep INTELCORECPU= ./build_rom.sh)
 eval $(grep TWODISK= ./build_rom.sh)
@@ -21,7 +20,7 @@ fi
 again=yes
 while [ "$again" = "yes" ]
 do
-if [ ! -f $PIDFILE ]
+if [ ! -f /tmp/building_rom.pid ]
 then
 exitcore
 fi
