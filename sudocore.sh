@@ -21,9 +21,9 @@ fi
 again=yes
 while [ "$again" = "yes" ]
 do
-sleep 2m
 if [ ! -f $PIDFILE ]
 then
 exitcore
 fi
+sleep 2m
 done
