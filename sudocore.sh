@@ -9,7 +9,7 @@ if [ $INTELCORECPU == true ]; then
 cpupower frequency-set -g powersave
 fi
 if [ $TWODISK == true ]; then
-umount $PATHTOTWO
+umount /dev/sdb
 fi
 }
 

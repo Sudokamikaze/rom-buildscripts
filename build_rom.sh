@@ -8,7 +8,7 @@ IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your
 CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
 INTELCORECPU=false # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
 TWODISK=true # Define "true" here to activate var below
-PATHTOTWO=/mnt/hdd # Define here dir on extrenal HDD/SSD to paralell I/O load
+PATHTOTWO=/mnt/hdd/RR_DISK/out # Define here dir on extrenal HDD/SSD to paralell I/O load
 # ===========================================
 
 # ==================DEVICE===================
@@ -38,7 +38,7 @@ prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
 if [ $TWODISK == true ]; then
-export OUT_DIR_COMMON_BASE="$PATHTOTWO"/RR/out
+export OUT_DIR_COMMON_BASE=$PATHTOTWO
 fi
 
 # BUILD STAGE
