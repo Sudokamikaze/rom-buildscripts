@@ -1,16 +1,14 @@
 #!/bin/bash
-echo "Sudo is need to be root and wait build_rom.sh process end"
+echo "Sudocore started"
 eval $(grep INTELCORECPU= ./build_rom.sh)
-eval $(grep TWODISK= ./build_rom.sh)
 
 function exitcore {
 again=no
 if [ $INTELCORECPU == true ]; then
 cpupower frequency-set -g powersave
 fi
-if [ $TWODISK == true ]; then
 umount /dev/sdb
-fi
+udisksctl power-off -b /dev/sdb
 }
 
 cpupower frequency-set -g performance

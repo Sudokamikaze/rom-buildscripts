@@ -7,14 +7,14 @@ CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 w
 IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
 CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
 INTELCORECPU=false # Define here if your CPU are Intel Core i3/i5/i7 sandy-bridge or newer
-TWODISK=true # Define "true" here to activate var below
-PATHTOTWO=/mnt/hdd/RR_DISK/out # Define here dir on extrenal HDD/SSD to paralell I/O load
+export OUT_DIR_COMMON_BASE=/mnt/hdd/out # Define there or comment this var
 # ===========================================
 
 # ==================DEVICE===================
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
 # ===========================================
 
+rm /tmp/building_rom.pid
 touch /tmp/building_rom.pid
 echo "Starting sudocore..."
 sudo ./sudocore.sh &
@@ -37,10 +37,6 @@ export CCACHE_DIR="$CACHEDIRPATH".ccache
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
-if [ $TWODISK == true ]; then
-export OUT_DIR_COMMON_BASE=$PATHTOTWO
-fi
-
 # BUILD STAGE
 croot
 case "$CURRENTDEVICE" in
@@ -52,7 +48,3 @@ case "$CURRENTDEVICE" in
 esac
 
 rm /tmp/building_rom.pid
-sleep 3m
-echo "Wait a second..."
-udisksctl power-off -b /dev/sdb
-fi
