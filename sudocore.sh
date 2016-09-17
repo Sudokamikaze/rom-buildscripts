@@ -13,9 +13,7 @@ umount $PATHTOTWO
 fi
 }
 
-if [ $INTELCORECPU == true ]; then
 cpupower frequency-set -g performance
-fi
 
 again=yes
 while [ "$again" = "yes" ]
