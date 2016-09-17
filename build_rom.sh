@@ -18,6 +18,7 @@ CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or t
 touch /tmp/building_rom.pid
 echo "Starting sudocore..."
 sudo ./sudocore.sh &
+sleep 10s
 
 # PREPARE STAGE
 . build/envsetup.sh
