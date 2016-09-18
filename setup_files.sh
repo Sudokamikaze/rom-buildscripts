@@ -1,6 +1,14 @@
 #!/bin/bash
 . build/envsetup.sh
 
+if [ $romver == lp ]; then
+curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
+cd core/
+patch < ../fffc2a16c61077abf583df87f94000356f172b77.patch
+cd ../ && rm fffc2a16c61077abf583df87f94000356f172b77.patch
+fi
+
+
 function prepare {
   mkdir -p .repo/local_manifests
   if [ $romver == lp ]; then
@@ -65,12 +73,15 @@ esac
 
 echo -n "Setup vendor and device specific files? [Y/N] "
 read menu
-if [ $menu == y ]; then
-  prepare
+case "$menu" in
+  y|Y) prepare
+  if [ $romver == lp ]; then
   blockpatch
-elif [ $menu == Y ]; then
-  prepare
-  blockpatch
-else
-exit
-fi
+  fi
+  ;;
+  n|N) exit
+  ;;
+  *) echo "Unknown symbol"
+  exit
+  ;;
+esac
