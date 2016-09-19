@@ -19,6 +19,10 @@ elif [ $romver == mm ]; then
   cd .repo/local_manifests
   curl -o https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_mm.xml
   mv roomservice_mm.xml roomservice.xml
+elif [ $romver == aokp ]; then
+  cd .repo/local_manifests
+  curl -o https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_aokp.xml
+  mv roomservice_mm.xml roomservice.xml
 fi
   repo sync -j 5 --force-sync
   case "$device" in
@@ -61,6 +65,7 @@ echo "on LP(5.1)"
 fi
 echo "1. MM(6.0.1)"
 echo "2. LP(5.1)"
+echo "3. AOKP MM(6.0.1)"
 echo "======================"
 echo -n "Select the version: "
 read choise
@@ -70,6 +75,9 @@ case "$choise" in
   ;;
   2) echo "Selected LP"
   romver=lp
+  ;;
+  3) echo "Selected MM AOKP"
+  romver=aokp
   ;;
   *) echo Error
   ;;
