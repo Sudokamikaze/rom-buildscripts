@@ -13,15 +13,15 @@ function prepare {
   mkdir -p .repo/local_manifests
   if [ $romver == lp ]; then
   cd .repo/local_manifests
-  curl -o https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_lp.xml
+  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_lp.xml
   mv roomservice_lp.xml roomservice.xml
 elif [ $romver == mm ]; then
   cd .repo/local_manifests
-  curl -o https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_mm.xml
+  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_mm.xml
   mv roomservice_mm.xml roomservice.xml
 elif [ $romver == du ]; then
   cd .repo/local_manifests
-  curl -o https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_mm_du.xml
+  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_mm_du.xml
   mv roomservice_mm.xml roomservice.xml
 fi
   repo sync -j 5 --force-sync
