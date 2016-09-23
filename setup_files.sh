@@ -1,13 +1,14 @@
 #!/bin/bash
 . build/envsetup.sh
 
+function blockpatch {
 if [ $romver == lp ]; then
 curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
 cd core/
 patch < ../fffc2a16c61077abf583df87f94000356f172b77.patch
 cd ../ && rm fffc2a16c61077abf583df87f94000356f172b77.patch
 fi
-
+}
 
 function prepare {
   mkdir -p .repo/local_manifests
