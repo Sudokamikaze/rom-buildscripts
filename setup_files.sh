@@ -1,6 +1,11 @@
 #!/bin/bash
 . build/envsetup.sh
 
+function pythonvenv {
+  virtualenv2 venv
+  ln -s /usr/lib/python2.7/* "$BASETOPDIR"/venv/lib/python2.7/
+}
+
 function blockpatch {
 if [ $romver == lp ]; then
 curl -O https://github.com/CyanogenMod/android_build/commit/fffc2a16c61077abf583df87f94000356f172b77.patch
@@ -90,3 +95,7 @@ case "$menu" in
   exit
   ;;
 esac
+
+echo "Creating python venv"
+sleep 2
+pythonvenv

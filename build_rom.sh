@@ -19,8 +19,6 @@ CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or t
 if [ $IFARCHLINUX == true ]; then
 PWD=$(pwd)
 BASETOPDIR=$PWD
-virtualenv2 venv
-ln -s /usr/lib/python2.7/* "$BASETOPDIR"/venv/lib/python2.7/
 source venv/bin/activate
 fi
 
