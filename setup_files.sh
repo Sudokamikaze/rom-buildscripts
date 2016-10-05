@@ -89,6 +89,10 @@ case "$choise" in
   2) echo "Selected taoshan"
   device=taoshan
   ;;
+  fixpython) echo "Fixin'.."
+  rm -rf venv
+  pythonvenv
+  ;;
   *) echo Error
   ;;
 esac

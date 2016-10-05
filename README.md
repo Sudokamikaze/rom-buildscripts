@@ -9,6 +9,10 @@ then read FAQ
 
 #### FAQ
 
+##### If u have python related problems on archlinux
+then run `./setup_files.sh`
+At device selection write "fixpython" not numbers
+
 Open in your text editor `build_rom.sh` on top of the file you see TUNABLE section.
 
 This script support only taoshan and grouper, if u want to build for grouper or taoshan
