@@ -33,9 +33,10 @@ function displaymenu {
   echo "1. MM(6.0.1)"
   echo "Grouper have very poor performance"
   echo "on LP(5.1)"
-  fi
+else
   echo "1. MM(6.0.1)"
   echo "2. LP(5.1)"
+fi
   echo "======================"
   echo -n "Select the version: "
   read choise
