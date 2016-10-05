@@ -1,7 +1,10 @@
 #!/bin/bash
+eval $(grep IFARCHLINUX= ./build_rom.sh)
 . build/envsetup.sh
 
 function pythonvenv {
+  PWD=$(pwd)
+  BASETOPDIR=$PWD
   virtualenv2 venv
   ln -s /usr/lib/python2.7/* "$BASETOPDIR"/venv/lib/python2.7/
 }
@@ -115,6 +118,8 @@ case "$menu" in
   ;;
 esac
 
+if [ $IFARCHLINUX == true ]; then
 echo "Creating python venv"
 sleep 2
 pythonvenv
+fi
