@@ -30,9 +30,9 @@ fi
 # BUILD STAGE
 croot
 case "$CURRENTDEVICE" in
-  taoshan) breakfast taoshan && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
+  taoshan) brunch taoshan user
   ;;
-  grouper) breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
+  grouper) brunch grouper user
   ;;
   *) echo "Error, corrent typo"
 esac
