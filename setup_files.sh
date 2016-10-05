@@ -95,6 +95,8 @@ case "$choise" in
   fixpython) echo "Fixin'.."
   rm -rf venv
   pythonvenv
+  echo "Done!"
+  exit
   ;;
   *) echo Error
   ;;
