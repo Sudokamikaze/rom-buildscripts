@@ -32,7 +32,7 @@ croot
 case "$CURRENTDEVICE" in
   taoshan) brunch taoshan user
   ;;
-  grouper) brunch grouper user
+  grouper) breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
   ;;
   *) echo "Error, corrent typo"
 esac
