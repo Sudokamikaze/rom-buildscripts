@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval $(grep CURRENTDEVICE= ./build_rom.sh)
-eval $(grep CURRENTVERSION= ./build_rom.sh)
+eval $(grep MANIFESTVERSION= ./.repo/local_manifests/roomservice.xml)
 
 function upsources {
   make clean && make clobber
@@ -9,17 +9,9 @@ function upsources {
 }
 
 function upmanifests {
-if [ $CURRENTDEVICE == grouper ]; then
-  case "$CURRENTVERSION" in
-    lp) echo "Error, grouper LP manifest is unsuported"
-    echo "Please edit your build_rom.sh"
-    exit
-    ;;
-  esac
-fi
 cd .repo/local_manifests
 rm roomservice.xml
-curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_"$CURRENTVERSION"_"$CURRENTDEVICE".xml
+curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_"$MANIFESTVERSION"_"$CURRENTDEVICE".xml
 }
 
 echo "============================"
