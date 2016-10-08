@@ -2,8 +2,12 @@
 
 eval $(grep CURRENTDEVICE= ./build_rom.sh)
 eval $(grep MANIFESTVERSION= ./.repo/local_manifests/roomservice.xml)
+eval $(grep IFARCHLINUX= ./build_rom.sh)
 
 function upsources {
+  if [ $IFARCHLINUX == true ]; then
+  source venv/bin/activate
+fi
   make clean && make clobber
   repo sync -j 5 -f --force-sync
 }
