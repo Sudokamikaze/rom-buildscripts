@@ -51,7 +51,7 @@ fi
       *) echo Error
       ;;
     esac
-fi
+else
   case "$choise" in
     1) echo "Selected MM"
     romver=mm
@@ -62,6 +62,7 @@ fi
     *) echo Error
     ;;
   esac
+fi
 }
 
 function prepareman {
