@@ -11,7 +11,6 @@ CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don'
 
 # ==================DEVICE===================
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
-CURRENTVERSION=lp # Define here lp(lollipop) or mm(marshmallow), this var only for updater
 # ===========================================
 
 # PREPARE STAGE
