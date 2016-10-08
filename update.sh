@@ -16,6 +16,7 @@ function upmanifests {
 cd .repo/local_manifests
 rm roomservice.xml
 curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/roomservice_"$MANIFESTVERSION"_"$CURRENTDEVICE".xml
+mv roomservice_*.xml roomservice.xml
 }
 
 echo "============================"
