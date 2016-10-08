@@ -27,6 +27,7 @@ fi
   taoshan) breakfast taoshan
   ;;
 esac
+cd ../../
 }
 
 function displaymenu {
