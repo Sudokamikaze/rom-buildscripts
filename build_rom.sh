@@ -18,6 +18,8 @@ CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or t
 
 if [ $IFARCHLINUX == true ]; then
 source venv/bin/activate
+export PATH="/usr/lib/jvm/java-7-openjdk/bin:$PATH"
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
 fi
 
 if [ $CCACHEENABLE == true ]; then
