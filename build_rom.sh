@@ -29,7 +29,7 @@ fi
 # BUILD STAGE
 croot
 case "$CURRENTDEVICE" in
-  taoshan) brunch taoshan user
+  taoshan) breakfast taoshan && mka bacon
   ;;
   grouper) breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
   ;;
