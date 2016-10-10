@@ -3,6 +3,7 @@ eval $(grep IFARCHLINUX= ./build_rom.sh)
 . build/envsetup.sh
 
 function pythonvenv {
+  rm -rf venv
   PWD=$(pwd)
   BASETOPDIR=$PWD
   virtualenv2 venv
