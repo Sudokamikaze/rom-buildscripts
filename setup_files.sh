@@ -82,11 +82,13 @@ fi
 
 echo " "
 echo " "
-echo "======================"
+echo "================================"
 echo "1. Nexus 7(grouper)"
 echo "2. Xperia L(taoshan)"
-echo "======================"
-echo -n "Select the device: "
+echo "================================"
+echo "fixpython. Recreate python venv"
+echo "================================"
+echo -n "Select the action: "
 read choise
 case "$choise" in
   1) echo "Selected grouper"
