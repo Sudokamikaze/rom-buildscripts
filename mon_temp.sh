@@ -26,16 +26,15 @@ else
 fi
 }
 
-echo "Check time:" $DATE
-echo " "
-check
 again=yes
 while [ "$again" = "yes" ]
 do
+echo "Check time:" $DATE
+echo " "
+check
 sleep 3m
 echo "  "
 echo "  "
 check
 overheat
-
 done
