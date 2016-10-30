@@ -13,6 +13,18 @@ CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don'
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
 # ===========================================
 
+function buildfunct {
+  croot
+  case "$CURRENTDEVICE" in
+    taoshan) breakfast taoshan
+    ;;
+    grouper) breakfast grouper
+    ;;
+    *) echo "Error, corrent typo"
+  esac
+  mka bacon
+}
+
 # PREPARE STAGE
 . build/envsetup.sh
 
@@ -29,11 +41,4 @@ prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
 # BUILD STAGE
-croot
-case "$CURRENTDEVICE" in
-  taoshan) breakfast taoshan && mka bacon
-  ;;
-  grouper) breakfast grouper && CFLAGS='-O2 -fomit-frame-pointer' mka bacon
-  ;;
-  *) echo "Error, corrent typo"
-esac
+buildfunct
