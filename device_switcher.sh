@@ -1,12 +1,11 @@
 #!/bin/bash
 
-function switchcheck {
+function devicecheck {
   if [ $CURRENTDEVICE == taoshan ]; then
-    echo -n "Do you wan't switch to grouper? [Y/N]: "
+    device=grouper
   elif [ $CURRENTDEVICE == grouper ]; then
-    echo -n "Do you wan't switch to taoshan? [Y/N]: "
-  fi
-read device
+    device=taoshan
+fi
 }
 
 function cases {
@@ -21,11 +20,13 @@ fi
 
 
 eval $(grep CURRENTDEVICE= ./build_rom.sh)
+devicecheck
 echo -n "Current device in build_rom: "
 echo $CURRENTDEVICE
 echo "==============================="
-switchcheck
-case "$device" in
+echo -n "Do you wan't switch to $device? [Y/N]: "
+read choise
+case "$choise" in
   y|Y) cases
   ;;
   n|N) exit
