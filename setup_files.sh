@@ -17,6 +17,13 @@ function prepare {
   curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
   mv "$gitmanifests".xml roomservice.xml
 elif [ $romver == mm ]; then
+  case "$device" in
+  both)
+  cd .repo/local_manifests
+  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
+  mv "$gitmanifests".xml roomservice.xml
+  ;;
+esac
   cd .repo/local_manifests
   curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
   mv "$gitmanifests".xml roomservice.xml
@@ -38,6 +45,8 @@ function displaymenu {
   echo "1. MM(6.0.1)"
   echo "Grouper have very poor performance"
   echo "on LP(5.1)"
+elif [ $device == both ]; then
+  echo "1. MM(6.0.1)"
 else
   echo "1. MM(6.0.1)"
   echo "2. LP(5.1)"
@@ -46,6 +55,14 @@ fi
   echo -n "Select the version: "
   read choise
   if [ $device == grouper ]; then
+    case "$choise" in
+      1) echo "Selected MM"
+      romver=mm
+      ;;
+      *) echo Error
+      ;;
+    esac
+elif [ $device == both ]; then
     case "$choise" in
       1) echo "Selected MM"
       romver=mm
@@ -76,6 +93,8 @@ case "$romver" in
   ;;
   lp) gitmanifests=roomservice_lp_taoshan
 esac
+elif [ $device == both ]; then
+ gitmanifests=roomservice_mm_both
 fi
 }
 
@@ -85,6 +104,7 @@ echo " "
 echo "================================"
 echo "1. Nexus 7(grouper)"
 echo "2. Xperia L(taoshan)"
+echo "3. Both(Xperia/Nexus)"
 echo "================================"
 echo "fixpython. Recreate python venv"
 echo "================================"
@@ -96,6 +116,9 @@ case "$choise" in
   ;;
   2) echo "Selected taoshan"
   device=taoshan
+  ;;
+  3) echo "Selected both"
+  device=both
   ;;
   fixpython) echo "Fixin'.."
   rm -rf venv
