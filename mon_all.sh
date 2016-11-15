@@ -5,8 +5,6 @@ HAVEBATTERY=true
 
 # Define bellow your HDD critical temperature
 CRITTEMP=55
-DATE=$(date +%H:%M:%S)
-
 
 function check {
 echo "---------Sensors---------"
@@ -21,11 +19,11 @@ monbattery
 
 function overheat {
 if [ $temperature == $CRITTEMP ]; then
+  overheathdd=true
+  logging
   echo "Overheat..."
   killall make
   poweroff
-else
-  echo " "
 fi
 }
 
@@ -38,8 +36,21 @@ fi
 
 function lowcharge {
 if [ "$batterylevel" == "20" ]; then
+lowchargebattery=true
+logging
 killall make
 poweroff
+fi
+}
+
+function logging {
+if [ "$overheathdd" == "true" ]; then
+touch CHECK_THIS_LOG.txt
+echo "YOUR PC/LAPTOP HDD WAS OVERHEATED" >> CHECK_THIS_LOG.txt
+echo "OVERHEAD DATE IS $DATE" > CHECK_THIS_LOG.txt
+elif [ "$lowchargebattery" == "true" ]; then
+echo "BATTERY LOWCHARGE LEVEL" >> CHECK_THIS_LOG.txt
+echo "LOWCHARGE DATE IS $DATE" > CHECK_THIS_LOG.txt
 fi
 }
 
@@ -51,6 +62,7 @@ fi
 again=yes
 while [ "$again" = "yes" ]
 do
+DATE=$(date +%H:%M:%S)
 echo "Check time:" $DATE
 echo " "
 check
