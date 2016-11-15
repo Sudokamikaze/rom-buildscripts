@@ -1,14 +1,12 @@
 #!/bin/bash
 
+# Define true if you on laptop
 HAVEBATTERY=true
 
-if [ "x$(id -u)" != 'x0' ]; then
-    echo 'Error: this script can only be executed by root'
-    exit 1
-fi
-
+# Define bellow your HDD critical temperature
 CRITTEMP=55
 DATE=$(date +%H:%M:%S)
+
 
 function check {
 echo "---------Sensors---------"
@@ -44,6 +42,11 @@ killall make
 poweroff
 fi
 }
+
+if [ "x$(id -u)" != 'x0' ]; then
+    echo 'Error: this script can only be executed by root'
+    exit 1
+fi
 
 again=yes
 while [ "$again" = "yes" ]
