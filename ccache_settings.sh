@@ -12,7 +12,7 @@ export CCACHE_DIR="$CACHEDIRPATH".ccache
 
 echo ================================
 echo "1. Check CCACHE size"
-echo "2. Cleanup CCACHE"
+echo "2. Cleanup CCACHE(with rm -rf)"
 echo "3. Define new CCACHE max size"
 echo ================================
 echo -n "Choose an action: "
@@ -22,7 +22,7 @@ case "$menu" in
   prebuilts/misc/linux-x86/ccache/ccache -s
   ;;
   2) echo "Cleaning ccache"
-  prebuilts/misc/linux-x86/ccache/ccache -c
+  cd $CACHEDIRPATH && rm -rf .ccache/
   ;;
   3) echo -n "Enter size in GB: "
   read size
