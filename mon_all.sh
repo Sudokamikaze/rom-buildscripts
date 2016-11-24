@@ -2,56 +2,54 @@
 
 # Define true if you on laptop
 HAVEBATTERY=true
-CRITPERCENT=40
+CRITPERCENT=52 # This will work if HAVEBATTERY= defined to 'true'
 
 # Define bellow your HDD critical temperature
 CRITTEMP=55
 
-function check {
-echo "---------Sensors---------"
-sensors | grep °C
-echo "----------HDD--------"
-echo -n "Current temperature: "
-temperature=$(hddtemp /dev/sda | cut -d : -f3 | sed 's/[^0-9]*//g')
-echo $temperature"°C"
-echo "---------BATTERY---------"
-monbattery
+# Define bellow time check
+CHECKTIME=1m
+
+function main {
+  clear
+  DATE=$(date +%H:%M:%S)
+  echo "Check time:" $DATE
+  echo "---------Sensors---------"
+  sensors | grep °C
+  echo "----------HDD--------"
+  temperature=$(hddtemp /dev/sda | cut -d : -f3 | sed 's/[^0-9]*//g')
+  echo "Current temperature:" $temperature"°C"
+  if [ "$HAVEBATTERY" == "true" ]; then
+  echo "---------BATTERY---------"
+  chargelevel=$(cat /sys/class/power_supply/BAT1/capacity)
+  echo "Battery charge level:" $chargelevel"%"
+fi
+  operations
 }
 
-function overheat {
-if [ $temperature == $CRITTEMP ]; then
-  overheathdd=true
+function operations {
+  if (("$temperature" >= "$CRITTEMP")); then
+  logginghdd=true
   logging
-  echo "Overheat..."
-  killall make
-  poweroff
-fi
-}
-
-function monbattery {
-if [ "$HAVEBATTERY" == "true" ]; then
-batterylevel=$(cat /sys/class/power_supply/BAT1/capacity)
-echo "Battery charge level:" $batterylevel"%"
-fi
-}
-
-function lowcharge {
-if [ "$batterylevel" == "$CRITPERCENT" ]; then
-lowchargebattery=true
-logging
-killall make
-poweroff
+elif (("$chargelevel" <= "$CRITPERCENT")); then
+  loggingbatt=true
+  logging
 fi
 }
 
 function logging {
-if [ "$overheathdd" == "true" ]; then
-touch CHECK_THIS_LOG.txt
+if [ "$logginghdd" == "true" ]; then
 echo "YOUR PC/LAPTOP HDD WAS OVERHEATED" >> CHECK_THIS_LOG.txt
-echo "OVERHEAD DATE IS $DATE" > CHECK_THIS_LOG.txt
-elif [ "$lowchargebattery" == "true" ]; then
+echo "OVERHEAD DATE IS $DATE" >> CHECK_THIS_LOG.txt
+chown $USER CHECK_THIS_LOG.txt
+killall make
+poweroff
+elif [ "$loggingbatt" == "true" ]; then
 echo "BATTERY LOWCHARGE LEVEL" >> CHECK_THIS_LOG.txt
-echo "LOWCHARGE DATE IS $DATE" > CHECK_THIS_LOG.txt
+echo "LOWCHARGE DATE IS $DATE" >> CHECK_THIS_LOG.txt
+chown $USER CHECK_THIS_LOG.txt
+killall make
+poweroff
 fi
 }
 
@@ -60,17 +58,9 @@ if [ "x$(id -u)" != 'x0' ]; then
     exit 1
 fi
 
-again=yes
-while [ "$again" = "yes" ]
+loop=yes
+while [ "$loop" = "yes" ]
 do
-DATE=$(date +%H:%M:%S)
-echo "Check time:" $DATE
-echo " "
-check
-sleep 3m
-echo "  "
-echo "  "
-check
-overheat
-lowcharge
+main
+sleep $CHECKTIME
 done
