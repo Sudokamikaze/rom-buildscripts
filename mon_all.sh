@@ -2,6 +2,7 @@
 
 # Define true if you on laptop
 HAVEBATTERY=true
+CRITPERCENT=40
 
 # Define bellow your HDD critical temperature
 CRITTEMP=55
@@ -35,7 +36,7 @@ fi
 }
 
 function lowcharge {
-if [ "$batterylevel" == "20" ]; then
+if [ "$batterylevel" == "$CRITPERCENT" ]; then
 lowchargebattery=true
 logging
 killall make
