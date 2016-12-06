@@ -28,6 +28,14 @@ fi
 }
 
 function operations {
+  case "$HAVEBATTERY" in
+  false)
+  if (("$temperature" >= "$CRITTEMP")); then
+  logginghdd=true
+  logging
+fi
+  ;;
+  true)
   if (("$temperature" >= "$CRITTEMP")); then
   logginghdd=true
   logging
@@ -35,6 +43,8 @@ elif (("$chargelevel" <= "$CRITPERCENT")); then
   loggingbatt=true
   logging
 fi
+  ;;
+esac
 }
 
 function logging {
