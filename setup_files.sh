@@ -43,8 +43,6 @@ function displaymenu {
   echo "======================"
   if [ $device == grouper ]; then
   echo "1. MM(6.0.1)"
-  echo "Grouper have very poor performance"
-  echo "on LP(5.1)"
 elif [ $device == both ]; then
   echo "1. MM(6.0.1)"
 else
