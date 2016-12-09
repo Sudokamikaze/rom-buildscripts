@@ -12,22 +12,9 @@ function pythonvenv {
 
 function prepare {
   mkdir -p .repo/local_manifests
-  if [ $romver == lp ]; then
   cd .repo/local_manifests
   curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
   mv "$gitmanifests".xml roomservice.xml
-elif [ $romver == mm ]; then
-  case "$device" in
-  both)
-  cd .repo/local_manifests
-  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
-  mv "$gitmanifests".xml roomservice.xml
-  ;;
-esac
-  cd .repo/local_manifests
-  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
-  mv "$gitmanifests".xml roomservice.xml
-fi
   repo sync -j 5 --force-sync
   case "$device" in
   grouper) breakfast grouper
@@ -43,6 +30,7 @@ function displaymenu {
   echo "======================"
   if [ $device == grouper ]; then
   echo "1. MM(6.0.1)"
+  echo "2. KK(4.4.4)"
 elif [ $device == both ]; then
   echo "1. MM(6.0.1)"
 else
@@ -56,6 +44,9 @@ fi
     case "$choise" in
       1) echo "Selected MM"
       romver=mm
+      ;;
+      2) echo "Selected KK"
+      romver=kk
       ;;
       *) echo Error
       ;;
@@ -84,12 +75,18 @@ fi
 
 function prepareman {
 if [ $device == grouper ]; then
-gitmanifests=roomservice_mm_grouper
+case "$romver" in
+  mm) gitmanifests=roomservice_mm_grouper
+  ;;
+  kk) gitmanifests=roomservice_kk_grouper
+  ;;
+esac
 elif [ $device == taoshan ]; then
 case "$romver" in
   mm) gitmanifests=roomservice_mm_taoshan
   ;;
   lp) gitmanifests=roomservice_lp_taoshan
+  ;;
 esac
 elif [ $device == both ]; then
  gitmanifests=roomservice_mm_both
