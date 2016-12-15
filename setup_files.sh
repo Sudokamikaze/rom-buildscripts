@@ -57,11 +57,9 @@ echo "================================"
 echo -n "Select the action: "
 read choise
 case "$choise" in
-  1) echo "Selected grouper"
-  device=grouper
+  1) device=grouper
   ;;
-  2) echo "Selected taoshan"
-  device=taoshan
+  2) device=taoshan
   ;;
   fixpython) echo "Fixin'.."
   rm -rf venv
@@ -88,9 +86,10 @@ echo "1. MM(6.0.1)"
 echo "2. KK(4.4.4)"
   ;;
 esac
+echo "========================"
 echo -n "Select the version: "
 read choise
-if [ "$device" == "grouper" ] then
+if [ "$device" == "grouper" ]; then
   case "$choise" in
     1) romver=mm
     ;;
