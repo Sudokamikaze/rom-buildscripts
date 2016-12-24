@@ -63,7 +63,7 @@ case "$menu" in
   ;;
   4) define
   echo "Current cache path is $current"
-  echo -n "Do you want switch to $to?:"
+  echo -n "Do you want switch to $to?: "
   read choise
   if [ "$choise" == "y" ]; then
   switch
