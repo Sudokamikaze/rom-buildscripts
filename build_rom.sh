@@ -37,7 +37,7 @@ fi
 
 if [ $CCACHEENABLE == true ]; then
 export USE_CCACHE=1
-export CCACHE_DIR="$CACHEDIRPATH".ccache
+export CCACHE_DIR="$CACHEDIRPATH"/.ccache
 export CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi

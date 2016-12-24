@@ -8,7 +8,7 @@ fi
 eval $(grep CACHEDIRPATH= ./build_rom.sh)
 
 export USE_CCACHE=1
-export CCACHE_DIR="$CACHEDIRPATH".ccache
+export CCACHE_DIR="$CACHEDIRPATH"/.ccache
 
 echo ================================
 echo "1. Check CCACHE size"
