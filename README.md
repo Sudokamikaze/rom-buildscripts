@@ -3,7 +3,7 @@ Scripts for building/setuping/checking roms on taoshan
 
 # Setup
 Go to your topdir of ROM and clone this repo
-`git clone https://github.com/Sudokamikaze/taoshan-buildscripts.git`
+`git clone https://github.com/Sudokamikaze/rom-buildscripts.git`
 
 then read FAQ
 
