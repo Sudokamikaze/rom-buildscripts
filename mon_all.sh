@@ -46,13 +46,11 @@ function logging {
 if [ "$logginghdd" == "true" ]; then
 echo "YOUR PC/LAPTOP HDD WAS OVERHEATED" >> CHECK_THIS_LOG.txt
 echo "OVERHEAD DATE IS $DATE" >> CHECK_THIS_LOG.txt
-chown $USER CHECK_THIS_LOG.txt
 killall make
 poweroff
 elif [ "$loggingbatt" == "true" ]; then
 echo "BATTERY LOWCHARGE LEVEL" >> CHECK_THIS_LOG.txt
 echo "LOWCHARGE DATE IS $DATE" >> CHECK_THIS_LOG.txt
-chown $USER CHECK_THIS_LOG.txt
 killall make
 poweroff
 fi
