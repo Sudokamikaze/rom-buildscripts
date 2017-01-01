@@ -8,25 +8,24 @@ cachemain=true
 # END
 
 # ==================BUILD SUBSYSTEM==================
-IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
-BUILDKITKAT=auto # Define true here if you building 4.4.4 and you are on archlinux(install make-3.81 and jre6 from aur)
+IFARCHLINUX=true
+BUILDKITKAT=auto
 
-CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
+CCACHEENABLE=true
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
-CACHEMAINPATH=/ccache/android/ # Define your dir for ccache here
-CACHERESERVEPATH=/mnt/hdd/ # Define your dir for reserve ccache e.x if you builing rom for taoshan use main path and if you want to build for grouper switch to reserve
+CACHEMAINPATH=/ccache/android/
+CACHERESERVEPATH=/mnt/hdd/
 
-BLOCK_BASED_OTA=false # Remove this string if you don't want to disable BLOCK Baseds SHIT!
-# export OUT_DIR_COMMON_BASE=/mnt/hdd/out # Define there or comment this var
+BLOCK_BASED_OTA=false
 
-CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
+CURRENTDEVICE=taoshan
 # ==================================================
 
 # ==============MONITORING SUBSYSTEM============
-HAVEBATTERY=true # Define true if you on laptop
-CRITPERCENT=52 # This will work if HAVEBATTERY= defined to 'true'
+HAVEBATTERY=true
+CRITPERCENT=52
 
-CRITTEMP=55 # Define bellow your HDD critical temperature
+CRITTEMP=55
 
-CHECKTIME=1m # Define bellow time check
+CHECKTIME=1m 
 # ==============================================
