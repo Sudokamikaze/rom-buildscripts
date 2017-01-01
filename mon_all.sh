@@ -1,14 +1,9 @@
 #!/bin/bash
 
-# Define true if you on laptop
-HAVEBATTERY=true
-CRITPERCENT=52 # This will work if HAVEBATTERY= defined to 'true'
-
-# Define bellow your HDD critical temperature
-CRITTEMP=55
-
-# Define bellow time check
-CHECKTIME=1m
+eval $(grep HAVEBATTERY= ./config.buildscripts)
+eval $(grep CRITPERCENT= ./config.buildscripts)
+eval $(grep CRITTEMP= ./config.buildscripts)
+eval $(grep CHECKTIME= ./config.buildscripts)
 
 function main {
   clear

@@ -7,7 +7,7 @@ exit 1
 cachemain=true
 # END
 
-# ==================TUNABLE==================
+# ==================BUILD SUBSYSTEM==================
 IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
 BUILDKITKAT=auto # Define true here if you building 4.4.4 and you are on archlinux(install make-3.81 and jre6 from aur)
 
@@ -20,3 +20,13 @@ export BLOCK_BASED_OTA=false # Remove this string if you don't want to disable B
 # export OUT_DIR_COMMON_BASE=/mnt/hdd/out # Define there or comment this var
 
 CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
+# ==================================================
+
+# ==============MONITORING SUBSYSTEM============
+HAVEBATTERY=true # Define true if you on laptop
+CRITPERCENT=52 # This will work if HAVEBATTERY= defined to 'true'
+
+CRITTEMP=55 # Define bellow your HDD critical temperature
+
+CHECKTIME=1m # Define bellow time check
+# ==============================================
