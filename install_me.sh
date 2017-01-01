@@ -1,8 +1,9 @@
 
 function main {
 git clone https://github.com/Sudokamikaze/rom-buildscripts.git
-rm -rf .git
+mv rom-buildscripts/* ./
 rm install_me.sh
+rm -rf rom-buildscripts
 }
 
 function ascii {
