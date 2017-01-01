@@ -19,7 +19,7 @@ function ccache_settings {
       exit 1
   fi
   export USE_CCACHE=1
-  export CCACHE_DIR="$CACHEMAINPATH"/.ccache
+  export CCACHE_DIR="$CCACHEPATH"/.ccache
   echo ================================
   echo "1. Check CCACHE size"
   echo "2. Cleanup CCACHE(with rm -rf)"
@@ -32,7 +32,7 @@ function ccache_settings {
     prebuilts/misc/linux-x86/ccache/ccache -s
     ;;
     2) echo "Cleaning ccache"
-    cd $CACHEMAINPATH
+    cd $CCACHEPATH
     rm -rf .ccache/
     ;;
     3) echo -n "Enter size in GB: "
