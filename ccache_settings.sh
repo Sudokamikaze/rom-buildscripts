@@ -1,11 +1,11 @@
 #!/bin/bash
-eval $(grep CCACHEENABLE= ./build_rom.sh)
-eval $(grep CACHEMAINPATH= ./build_rom.sh)
-eval $(grep CACHERESERVEPATH= ./build_rom.sh)
-eval $(grep cachemain= ./build_rom.sh)
+eval $(grep CCACHEENABLE= ./config.buildscripts)
+eval $(grep CACHEMAINPATH= ./config.buildscripts)
+eval $(grep CACHERESERVEPATH= ./config.buildscripts)
+eval $(grep cachemain= ./config.buildscripts)
 
 if [ "$CCACHEENABLE" != 'true' ]; then
-    echo 'Error: CCache disabled in build_rom.sh Exiting...'
+    echo 'Error: CCache disabled in config.buildscripts Exiting...'
     exit 1
 fi
 
@@ -28,10 +28,10 @@ fi
 
 function switch {
   if [ "$current" == "MAIN" ]; then
-  sed -i -e 's/cachemain=true/cachemain=false/' ./build_rom.sh
+  sed -i -e 's/cachemain=true/cachemain=false/' ./config.buildscripts
   echo "Switched to RESERVE"
 elif [ "$current" == "RESERVE" ]; then
-  sed -i -e 's/cachemain=false/cachemain=true/' ./build_rom.sh
+  sed -i -e 's/cachemain=false/cachemain=true/' ./config.buildscripts
   echo "Switched to MAIN"
 fi
 }

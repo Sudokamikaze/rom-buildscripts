@@ -1,29 +1,15 @@
 #!/bin/bash
 
-# THERE VARS IS CHANGED BY SCRIPTS! DO NOT MODIFY!
-cachemain=true
-# END
-
-# ==================TUNABLE==================
-IFARCHLINUX=true # Define true if your distro IS ArchLinux/ Define false if your distro NOT ArchLinux
-BUILDKITKAT=auto # Define true here if you building 4.4.4 and you are on archlinux(install make-3.81 and jre6 from aur)
-# ===========================================
-
-# ==================CCACHE==================
-CCACHEENABLE=true # Define true if u want to use ccache / Define false if u don't wand ccache
-CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
-CACHEMAINPATH=/ccache/android/ # Define your dir for ccache here
-CACHERESERVEPATH=/mnt/hdd/ # Define your dir for reserve ccache e.x if you builing rom for taoshan use main path and if you want to build for grouper switch to reserve
-# ===========================================
-
-# ==================ROM==================
-export BLOCK_BASED_OTA=false # Remove this string if you don't want to disable BLOCK Baseds SHIT!
-# export OUT_DIR_COMMON_BASE=/mnt/hdd/out # Define there or comment this var
-# =======================================
-
-# ==================DEVICE===================
-CURRENTDEVICE=taoshan # Define here build device. E.x CURRENTDEVICE=grouper or taoshan
-# ===========================================
+eval $(grep CCACHEENABLE= ./config.buildscripts)
+eval $(grep cachemain= ./config.buildscripts)
+eval $(grep CCACHESIZE= ./config.buildscripts)
+eval $(grep CACHEMAINPATH= ./config.buildscripts)
+eval $(grep CACHERESERVEPATH= ./config.buildscripts)
+eval $(grep CURRENTDEVICE= ./config.buildscripts)
+eval $(grep IFARCHLINUX= ./config.buildscripts)
+eval $(grep CURRENTDEVICE= ./config.buildscripts)
+eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
+eval $(grep BUILDKITKAT= ./config.buildscripts)
 
 function buildfunct {
   croot
@@ -71,6 +57,10 @@ export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
 export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
 export PATH="$pwdvar/makedir:$PATH"
 fi
+fi
+
+if [ "$BLOCK_BASED_OTA" == "false" ]; then
+export BLOCK_BASED_OTA=false
 fi
 
 # BUILD STAGE

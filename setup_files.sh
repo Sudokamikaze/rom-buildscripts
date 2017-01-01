@@ -1,5 +1,5 @@
 #!/bin/bash
-eval $(grep IFARCHLINUX= ./build_rom.sh)
+eval $(grep IFARCHLINUX= ./config.buildscripts)
 . build/envsetup.sh
 
 function pythonvenv {

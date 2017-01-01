@@ -1,8 +1,8 @@
 #!/bin/bash
 
-eval $(grep CURRENTDEVICE= ./build_rom.sh)
+eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep MANIFESTVERSION= ./.repo/local_manifests/roomservice.xml)
-eval $(grep IFARCHLINUX= ./build_rom.sh)
+eval $(grep IFARCHLINUX= ./config.buildscripts)
 
 function upsources {
   if [ $IFARCHLINUX == true ]; then
