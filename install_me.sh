@@ -27,7 +27,7 @@ function ascii {
   "
 }
 
-
+clear
 echo "Installing scripts"
 ascii
 main
