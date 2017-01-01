@@ -1,7 +1,6 @@
 #!/bin/bash
 
 eval $(grep CCACHEENABLE= ./config.buildscripts)
-eval $(grep cachemain= ./config.buildscripts)
 eval $(grep CCACHESIZE= ./config.buildscripts)
 eval $(grep CACHEMAINPATH= ./config.buildscripts)
 eval $(grep CACHERESERVEPATH= ./config.buildscripts)
@@ -34,12 +33,7 @@ fi
 
 if [ $CCACHEENABLE == true ]; then
 export USE_CCACHE=1
-
-if [ "$cachemain" == "true" ]; then
 export CCACHE_DIR="$CACHEMAINPATH"/.ccache
-elif [ "$cachemain" == "false" ]; then
-export CCACHE_DIR="$CACHERESERVEPATH"/.ccache
-fi
 export CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi

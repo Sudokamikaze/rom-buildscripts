@@ -3,10 +3,6 @@
 echo "Do not execure this"
 exit 1
 
-# THERE VARS IS CHANGED BY SCRIPTS! DO NOT MODIFY!
-cachemain=true
-# END
-
 # ==================BUILD SUBSYSTEM==================
 IFARCHLINUX=true
 BUILDKITKAT=auto
@@ -27,5 +23,5 @@ CRITPERCENT=52
 
 CRITTEMP=55
 
-CHECKTIME=1m 
+CHECKTIME=1m
 # ==============================================
