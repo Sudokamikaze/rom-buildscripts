@@ -1,8 +1,7 @@
 #!/bin/bash
 
 eval $(grep CCACHEENABLE= ./config.buildscripts)
-eval $(grep CACHEMAINPATH= ./config.buildscripts)
-eval $(grep CACHERESERVEPATH= ./config.buildscripts)
+eval $(grep CCACHEPATH= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
 
 function call {

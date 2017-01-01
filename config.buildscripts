@@ -9,8 +9,7 @@ BUILDKITKAT=auto
 
 CCACHEENABLE=true
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
-CACHEMAINPATH=/ccache/android/
-CACHERESERVEPATH=/mnt/hdd/
+CCACHEPATH=/ccache/android/
 
 BLOCK_BASED_OTA=false
 
