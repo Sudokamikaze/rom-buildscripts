@@ -4,7 +4,7 @@ Scripts for building/setuping/checking roms on taoshan
 # Install
 Execute this command at top dir
 
-`wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | bash `
+`wget https://raw.githubusercontent.com/Sudokamikaze/rom-buildscripts/master/install_me.sh -O - | bash `
 
 then read FAQ
 
