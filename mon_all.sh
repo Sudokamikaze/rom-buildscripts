@@ -5,6 +5,8 @@ eval $(grep CRITPERCENT= ./config.buildscripts)
 eval $(grep CRITTEMP= ./config.buildscripts)
 eval $(grep CHECKTIME= ./config.buildscripts)
 
+chUSER=$(users | awk {'print $1'})
+
 function main {
   clear
   DATE=$(date +%H:%M:%S)
@@ -46,11 +48,13 @@ function logging {
 if [ "$logginghdd" == "true" ]; then
 echo "YOUR PC/LAPTOP HDD WAS OVERHEATED" >> CHECK_THIS_LOG.txt
 echo "OVERHEAD DATE IS $DATE" >> CHECK_THIS_LOG.txt
+chmod $chUSER CHECK_THIS_LOG.txt
 killall make
 poweroff
 elif [ "$loggingbatt" == "true" ]; then
 echo "BATTERY LOWCHARGE LEVEL" >> CHECK_THIS_LOG.txt
 echo "LOWCHARGE DATE IS $DATE" >> CHECK_THIS_LOG.txt
+chmod $chUSER CHECK_THIS_LOG.txt
 killall make
 poweroff
 fi
