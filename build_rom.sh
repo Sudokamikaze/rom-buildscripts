@@ -21,13 +21,21 @@ function buildfunct {
   mka bacon
 }
 
-# PREPARE STAGE
-. build/envsetup.sh
+function javadefine {
+case "$BUILDKITKAT" in
+  true|auto)
+  export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
+  export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
+  ;;
+  false|*)
+  export PATH="/usr/lib/jvm/java-7-openjdk/bin:$PATH"
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
+  ;;
+esac
+}
 
 if [ $IFARCHLINUX == true ]; then
 source venv/bin/activate
-export PATH="/usr/lib/jvm/java-7-openjdk/bin:$PATH"
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
 fi
 
 if [ $CCACHEENABLE == true ]; then
@@ -37,24 +45,21 @@ export CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
-if [ "$BUILDKITKAT" == "true" ]; then
-pwdvar=$(pwd)
-export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
-export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
-export PATH="$pwdvar/makedir:$PATH"
-elif [ "$BUILDKITKAT" == "auto" ]; then
-checkdir=$(ls | grep makedir)
-if [ "$checkdir" == "makedir" ]; then
-pwdvar=$(pwd)
-export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
-export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
-export PATH="$pwdvar/makedir:$PATH"
-fi
-fi
+case "$BUILDKITKAT" in
+  true|auto)
+  if grep -q "makedir" $checkdir then
+  pwdvar=$(pwd)
+  export PATH="$pwdvar/makedir:$PATH"
+  ;;
+esac
 
 if [ "$BLOCK_BASED_OTA" == "false" ]; then
 export BLOCK_BASED_OTA=false
 fi
 
+# PREPARE STAGE
+. build/envsetup.sh
+
 # BUILD STAGE
+javadefine
 buildfunct
