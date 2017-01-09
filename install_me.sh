@@ -39,6 +39,5 @@ function ascii {
 
 clear
 ifinstalled
-echo "Installing scripts"
 ascii
 main
