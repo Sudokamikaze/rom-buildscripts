@@ -6,6 +6,15 @@ rm install_me.sh
 rm -rf rom-buildscripts
 }
 
+function ifinstalled {
+varforcheck=$(ls | grep "build_rom.sh")
+if grep -q "build_rom.sh" $varforcheck then
+echo "Already installed, scripts will updated"
+unset varforcheck
+fi
+}
+
+
 function ascii {
   echo -e "
           ------               _____
@@ -28,6 +37,7 @@ function ascii {
 }
 
 clear
+ifinstalled
 echo "Installing scripts"
 ascii
 main
