@@ -47,7 +47,8 @@ fi
 
 case "$BUILDKITKAT" in
   true|auto)
-  if echo "$checkdir" | grep -q "makedir" then
+  if echo "$checkdir" | grep -q "makedir"
+ then
   pwdvar=$(pwd)
   export PATH="$pwdvar/makedir:$PATH"
 fi
