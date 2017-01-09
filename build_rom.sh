@@ -50,6 +50,7 @@ case "$BUILDKITKAT" in
   if grep -q "makedir" $checkdir then
   pwdvar=$(pwd)
   export PATH="$pwdvar/makedir:$PATH"
+fi
   ;;
 esac
 
