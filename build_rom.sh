@@ -49,6 +49,7 @@ fi
 
 case "$BUILDKITKAT" in
   true|auto)
+  checkdir=$(ls | grep makedir)
   if echo "$checkdir" | grep -q "makedir"
  then
   pwdvar=$(pwd)
