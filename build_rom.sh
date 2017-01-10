@@ -24,8 +24,10 @@ function buildfunct {
 function javadefine {
 case "$BUILDKITKAT" in
   true|auto)
+  if [ "$enablejava" == "yep" ]; then
   export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
   export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
+fi
   ;;
   false|*)
   export PATH="/usr/lib/jvm/java-7-openjdk/bin:$PATH"
@@ -51,6 +53,7 @@ case "$BUILDKITKAT" in
  then
   pwdvar=$(pwd)
   export PATH="$pwdvar/makedir:$PATH"
+  enablejava=yep
 fi
   ;;
 esac
