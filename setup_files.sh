@@ -34,6 +34,7 @@ case "$romver" in
   kk) gitmanifests=roomservice_kk_grouper
   mkdir makedir && cd makedir
   ln -s /usr/sbin/make-3.81 ./make
+  cd ..
   ;;
 esac
 elif [ $device == taoshan ]; then
