@@ -8,6 +8,14 @@ eval $(grep IFARCHLINUX= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep BUILDKITKAT= ./config.buildscripts)
+eval $(grep ENABLEMON= ./config.buildscripts)
+
+function mon {
+if [ "$ENABLEMON" == "true" ]; then
+echo "Sudo needed for mon_all.sh monitoring temperatures"
+sudo ./mon_all.sh -q &
+fi
+}
 
 case "$IFARCHLINUX" in
   true) source venv/bin/activate
@@ -39,6 +47,8 @@ fi
 
 # PREPARE STAGE
 . build/envsetup.sh
+
+mon
 
 croot
 case "$CURRENTDEVICE" in
