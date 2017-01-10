@@ -72,6 +72,7 @@ elif [ $CURRENTDEVICE == grouper ]; then
 sed -i -e 's/CURRENTDEVICE=grouper/CURRENTDEVICE=taoshan/' ./config.buildscripts
 echo "Switched to taoshan"
 fi
+./update.sh -m
 }
 
 echo "1. CCACHE Settings"

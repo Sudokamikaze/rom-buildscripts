@@ -19,6 +19,14 @@ curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/rooms
 mv roomservice_*.xml roomservice.xml
 }
 
+while getopts ":m" opt ;
+do
+  case $opt in
+    m) echo "Updating manifest..."
+    upmanifests
+    exit 1
+    ;;
+esac
 echo "============================"
 echo "1. Update sources"
 echo "2. Update local_manifests"
@@ -34,3 +42,4 @@ case "$choise" in
   exit
   ;;
 esac
+done
