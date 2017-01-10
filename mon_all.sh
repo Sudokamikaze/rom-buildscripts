@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 eval $(grep HAVEBATTERY= ./config.buildscripts)
 eval $(grep CRITPERCENT= ./config.buildscripts)
 eval $(grep CRITTEMP= ./config.buildscripts)
@@ -8,20 +10,24 @@ eval $(grep CHECKTIME= ./config.buildscripts)
 chUSER=$(users | awk {'print $1'})
 
 function main {
+  temperature=$(hddtemp /dev/sda | cut -d : -f3 | sed 's/[^0-9]*//g')
+  chargelevel=$(cat /sys/class/power_supply/BAT1/capacity)
+  if [ "$quiet" == "true" ]; then
+  operations
+else
   clear
   DATE=$(date +%H:%M:%S)
   echo "Check time:" $DATE
   echo "---------Sensors---------"
   sensors | grep °C
   echo "----------HDD--------"
-  temperature=$(hddtemp /dev/sda | cut -d : -f3 | sed 's/[^0-9]*//g')
   echo "Current temperature:" $temperature"°C"
   if [ "$HAVEBATTERY" == "true" ]; then
   echo "---------BATTERY---------"
-  chargelevel=$(cat /sys/class/power_supply/BAT1/capacity)
   echo "Battery charge level:" $chargelevel"%"
 fi
   operations
+fi
 }
 
 function operations {
@@ -65,9 +71,17 @@ if [ "x$(id -u)" != 'x0' ]; then
     exit 1
 fi
 
+while getopts ":q" opt ;
+do
+  case $opt in
+    q) echo "Quiet mode enabled"
+    quiet=true
+    ;;
+esac
 loop=yes
 while [ "$loop" = "yes" ]
 do
 main
 sleep $CHECKTIME
+done
 done
