@@ -74,7 +74,7 @@ fi
 while getopts ":q" opt ;
 do
   case $opt in
-    q) echo "Quiet mode enabled"
+    q) echo "mon_all.sh started in quiet mode"
     quiet=true
     ;;
 esac
