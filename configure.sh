@@ -54,7 +54,7 @@ function device_switch {
   echo -n "Current device in config.buildscripts: "
   echo $CURRENTDEVICE
   echo "==============================="
-  echo -n "Do you wan't switch to $device? [Y/N]: "
+  echo -n "Do you want switch to $device? [Y/N]: "
   read choise
   case "$choise" in
     y|Y) configure_device
