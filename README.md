@@ -16,7 +16,6 @@ Setting | Description
 -------:|:-------------------------
 IFARCHLINUX=  | This var trigger python venv activation&creating
 BUILDKITKAT=  | This option is defined by default to auto
-ENABLEMON=    | Start mon_all.sh(in quiet mode) with build(need sudo)
 CCACHEENABLE= | CCACHE activation
 CCACHESIZE=   | CCACHE size
 CCACHEPATH=    | CCACHE Path
