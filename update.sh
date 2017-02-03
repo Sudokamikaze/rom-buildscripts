@@ -19,6 +19,24 @@ curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/rooms
 mv roomservice_*.xml roomservice.xml
 }
 
+function menu {
+  echo "============================"
+  echo "1. Update sources"
+  echo "2. Update local_manifests"
+  echo "============================"
+  echo -n "Choose an action: "
+  read choise
+  case "$choise" in
+    1) upsources
+    ;;
+    2) upmanifests
+    ;;
+    *) echo "Unknown symbol."
+    exit
+    ;;
+  esac
+}
+
 while getopts ":m" opt ;
 do
   case $opt in
@@ -26,20 +44,7 @@ do
     upmanifests
     exit 1
     ;;
-esac
-echo "============================"
-echo "1. Update sources"
-echo "2. Update local_manifests"
-echo "============================"
-echo -n "Choose an action: "
-read choise
-case "$choise" in
-  1) upsources
-  ;;
-  2) upmanifests
-  ;;
-  *) echo "Unknown symbol."
-  exit
-  ;;
+    *) menu
+    ;;
 esac
 done
