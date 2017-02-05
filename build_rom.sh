@@ -11,9 +11,9 @@ eval $(grep BUILDKITKAT= ./config.buildscripts)
 
 case "$IFARCHLINUX" in
   true) source venv/bin/activate
-  if [ "$BUILDKITKAT" != "true" ]; then
-    export PATH="/usr/lib/jvm/java-7-openjdk/bin:$PATH"
-    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
+  if [ "$BUILDKITKAT" == "false" ]; then
+    export PATH="/usr/lib/jvm/java-8-openjdk/bin:$PATH"
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
   else
     export PATH="/usr/lib/jvm/java-6-jre/jre/bin:$PATH"
     export JAVA_HOME=/usr/lib/jvm/java-6-jre/jre
