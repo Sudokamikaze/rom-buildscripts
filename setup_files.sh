@@ -17,6 +17,7 @@ fi
 function get_manifest {
   mkdir -p .repo/local_manifests
   cd .repo/local_manifests
+  check_manifest
   wget -q -O roomservice.xml https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
   repo sync -j 5 --force-sync
   cd ../../
@@ -27,6 +28,16 @@ function get_manifest {
   taoshan) breakfast taoshan
   ;;
 esac
+}
+
+function check_manifest {
+local testvar=$(curl https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml)
+case "$testvar" in
+  "404: Not Found") echo "Sorry, this manifest version($romver) for $choised not available"
+  exit 1
+  ;;
+esac
+unset testvar
 }
 
 echo "========================="
