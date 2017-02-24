@@ -12,6 +12,7 @@ CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 w
 CCACHEPATH=/ccache/android/
 
 BLOCK_BASED_OTA=false
+ROOT=true
 
 CURRENTDEVICE=taoshan
 # ==================================================

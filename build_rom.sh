@@ -8,6 +8,7 @@ eval $(grep IFARCHLINUX= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep BUILDKITKAT= ./config.buildscripts)
+eval $(grep ROOT= ./config.buildscripts)
 
 case "$IFARCHLINUX" in
   true) source venv/bin/activate
@@ -35,6 +36,10 @@ fi
 
 if [ "$BLOCK_BASED_OTA" == "false" ]; then
 export BLOCK_BASED_OTA=false
+fi
+
+if [ "$ROOT" == "true" ]; then
+export WITH_SU=true
 fi
 
 # PREPARE STAGE
