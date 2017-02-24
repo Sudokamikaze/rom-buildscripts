@@ -1,124 +1,86 @@
 #!/bin/bash
 eval $(grep IFARCHLINUX= ./config.buildscripts)
-. build/envsetup.sh
 
 function pythonvenv {
-  rm -rf venv
+  local check_var=$(ls | grep "venv")
+  if [ "$check_var" != "venv" ];
   PWD=$(pwd)
-  BASETOPDIR=$PWD
   virtualenv2 venv
-  ln -s /usr/lib/python2.7/* "$BASETOPDIR"/venv/lib/python2.7/
+  ln -s /usr/lib/python2.7/* "$PWD"/venv/lib/python2.7/
+fi
+else
+  echo "Venv already created"
+  exit 1
+fi
 }
 
-function manifestdownload {
+function get_manifest {
   mkdir -p .repo/local_manifests
   cd .repo/local_manifests
-  curl -O https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
-  mv "$gitmanifests".xml roomservice.xml
+  wget -q -O roomservice.xml https://raw.githubusercontent.com/Zeroskies/local_manifests/master/"$gitmanifests".xml
   repo sync -j 5 --force-sync
+  cd ../../
+  . build/envsetup.sh
   case "$device" in
   grouper) breakfast grouper
   ;;
   taoshan) breakfast taoshan
   ;;
 esac
-cd ../../
 }
 
-
-function manifestprepare {
-if [ $device == grouper ]; then
-case "$romver" in
-  mm) gitmanifests=roomservice_mm_grouper
-  ;;
-  kk) gitmanifests=roomservice_kk_grouper
-  mkdir makedir && cd makedir
-  ln -s /usr/sbin/make-3.81 ./make
-  cd ..
-  ;;
-esac
-elif [ $device == taoshan ]; then
-case "$romver" in
-  mm) gitmanifests=roomservice_mm_taoshan
-  ;;
-  lp) gitmanifests=roomservice_lp_taoshan
-  ;;
-esac
-fi
-}
-
-echo " "
-echo " "
-echo "================================"
-echo "1. Nexus 7(grouper)"
-echo "2. Xperia L(taoshan)"
-echo "================================"
-echo "fixpython. Recreate python venv"
-echo "================================"
-echo -n "Select the action: "
+echo "========================="
+echo "1. Xperia L(taoshan)"
+echo "2. Nexus 7(grouper)"
+echo "========================="
+echo "3. Fix python venv(for archlinux)"
+echo "========================="
+echo -n "Choose device: "
 read choise
 case "$choise" in
-  1) device=grouper
+  1) choised=taoshan
   ;;
-  2) device=taoshan
+  2) choised=grouper
   ;;
-  fixpython) echo "Fixin'.."
-  rm -rf venv
+  3) rm -rf venv
   pythonvenv
-  echo "Done!"
-  exit
-  ;;
-  *) echo Error
   ;;
 esac
 
-echo " "
-echo " "
-
-echo "Selected device: $device"
-echo "========================"
-case "$device" in
+case "$choised" in
   taoshan)
-echo "1. MM(6.0.1)"
-echo "2. LP(5.1)"
+  desc1="MM. Marhsmallow(6.0.1)"
+  desc2="LP. Lollipop(5.1)"
   ;;
   grouper)
-echo "1. MM(6.0.1)"
-echo "2. KK(4.4.4)"
+  desc1="MM. Marhsmallow(6.0.1)"
+  desc2="KK. Kitkat(4.4.4)"
   ;;
 esac
-echo "========================"
-echo -n "Select the version: "
-read choise
-if [ "$device" == "grouper" ]; then
-  case "$choise" in
-    1) romver=mm
-    ;;
-    2) romver=kk
-    ;;
-  esac
-elif [ "$device" == "taoshan" ]; then
-  case "$choise" in
-    1) romver=mm
-    ;;
-    2) romver=lp
-    ;;
-  esac
-fi
 
-manifestprepare
-
-echo -n "All the preparation was successful, do you want to proceed? [Y/N]: "
-read menu
-case "$menu" in
-  y|Y) manifestdownload
+echo "There manifests available and provided by Zeroskies"
+echo "========================="
+echo $desc1
+echo $desc2
+echo "========================="
+echo -n "Choose version: "
+read version
+case "$version" in
+  MM|mm) romver=mm
+  gitmanifests=roomservice_"$romver"_"$choised"
   ;;
-  n|N) exit
+  LP|lp) romver=lp
+  gitmanifests=roomservice_"$romver"_"$choised"
   ;;
-  *) echo "Unknown symbol"
-  exit
+  KK|kk)
+  mkdir makedir && cd makedir
+  ln -s /usr/sbin/make-3.81 ./make
+  romver=kk
+  gitmanifests=roomservice_"$romver"_"$choised"
   ;;
 esac
+
+manifest_get
 
 if [ $IFARCHLINUX == true ]; then
 echo "Creating python venv"
