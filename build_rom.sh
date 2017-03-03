@@ -9,6 +9,7 @@ eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep BUILDKITKAT= ./config.buildscripts)
 eval $(grep ROOT= ./config.buildscripts)
+eval $(grep MON= ./config.buildscripts)
 
 case "$IFARCHLINUX" in
   true) source venv/bin/activate
@@ -41,6 +42,15 @@ fi
 if [ "$ROOT" == "true" ]; then
 export WITH_SU=true
 fi
+
+if [ "$MON" == "true" ]; then
+echo "Mon mode enabled"
+echo -n "Enter sudo password: "
+read -s password
+echo $password | sudo -S ./mon_all.sh -d &
+unset $password
+fi
+
 
 # PREPARE STAGE
 . build/envsetup.sh
