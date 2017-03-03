@@ -37,14 +37,23 @@ function menu {
   esac
 }
 
-while getopts ":m" opt ;
+if [ $# = 0 ]; then
+  echo "USAGE: use -m to update manifest"
+  echo "use -a to display menu of this script"
+fi
+
+while getopts "m:a" opt ;
 do
   case $opt in
     m) echo "Updating manifest..."
     upmanifests
     exit 1
     ;;
-    *) menu
+    a)
+    menu
+    ;;
+    *) echo "Unknow option, use -m to update manifest, use -a to display menu of this script"
+    exit 1
     ;;
 esac
 done
