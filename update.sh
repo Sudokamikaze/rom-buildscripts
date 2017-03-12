@@ -42,7 +42,7 @@ if [ $# = 0 ]; then
   echo "use -a to display menu of this script"
 fi
 
-while getopts "m:a" opt ;
+while getopts "ma" opt ;
 do
   case $opt in
     m) echo "Updating manifest..."
