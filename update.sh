@@ -49,8 +49,7 @@ do
     upmanifests
     exit 1
     ;;
-    a)
-    menu
+    a) menu
     ;;
     *) echo "Unknow option, use -m to update manifest, use -a to display menu of this script"
     exit 1
