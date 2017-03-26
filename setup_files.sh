@@ -3,11 +3,10 @@ eval $(grep IFARCHLINUX= ./config.buildscripts)
 
 function pythonvenv {
   local check_var=$(ls | grep "venv")
-  if [ "$check_var" != "venv" ];
+  if [ "$check_var" != "venv" ]; then
   PWD=$(pwd)
   virtualenv2 venv
   ln -s /usr/lib/python2.7/* "$PWD"/venv/lib/python2.7/
-fi
 else
   echo "Venv already created"
   exit 1
