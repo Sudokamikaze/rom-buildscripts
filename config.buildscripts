@@ -6,7 +6,7 @@ exit 1
 # ==================BUILD SUBSYSTEM==================
 IFARCHLINUX=true
 BUILDKITKAT=false
-MON=true
+MON=false
 
 CCACHEENABLE=true
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
