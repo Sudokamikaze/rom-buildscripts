@@ -54,6 +54,7 @@ case "$choise" in
   ;;
   3) rm -rf venv
   pythonvenv
+  exit 1
   ;;
 esac
 
