@@ -1,5 +1,5 @@
 # rom-buildscripts
-Scripts for building/setuping/checking roms on taoshan
+Scripts for building/setuping/checking roms for mako/grouper
 
 # Install
 Execute this command at top dir
@@ -22,14 +22,14 @@ CCACHEPATH=    | CCACHE Path
 ROOT=         | Enabling root(For LineageOS)
 MON=          | Starting mon_all in quite mode, need sudo
 BLOCK_BASED_OTA=| This option called by build_rom and this disable block based,leave it to false
-CURRENTDEVICE= | Current device(Supported taoshan and grouper)
+CURRENTDEVICE= | Current device(Supported mako and grouper)
 HAVEBATTERY=| mon_all.sh will display current battery charge level
 CRITPERCENT=| When charge level reach this value laptop will shutdown
 CRITTEMP=| Critical temperature for HDD(if script reach this value PC will shutdown)
 CHECKTIME=| How often script check temperature and charge level
 
 
-This script support only taoshan and grouper if you want you can modify manifests and look in build_rom.sh source and modify it might work
+This script support only mako and grouper if you want you can modify manifests and look in build_rom.sh source and modify it might work
 
 
 if you want to switch build device open `config.buildscripts` and edit DEVICE section or run `./device_switcher.sh`

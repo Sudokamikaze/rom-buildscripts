@@ -46,10 +46,10 @@ function ccache_settings {
 }
 
 function device_switch {
-  if [ $CURRENTDEVICE == taoshan ]; then
+  if [ $CURRENTDEVICE == mako ]; then
     device=grouper
   elif [ $CURRENTDEVICE == grouper ]; then
-    device=taoshan
+    device=mako
   fi
   echo -n "Current device in config.buildscripts: "
   echo $CURRENTDEVICE
@@ -65,12 +65,12 @@ function device_switch {
 }
 
 function configure_device {
-if [ $CURRENTDEVICE == taoshan ]; then
-sed -i -e 's/CURRENTDEVICE=taoshan/CURRENTDEVICE=grouper/' ./config.buildscripts
+if [ $CURRENTDEVICE == mako ]; then
+sed -i -e 's/CURRENTDEVICE=mako/CURRENTDEVICE=grouper/' ./config.buildscripts
 echo "Switched to grouper"
 elif [ $CURRENTDEVICE == grouper ]; then
-sed -i -e 's/CURRENTDEVICE=grouper/CURRENTDEVICE=taoshan/' ./config.buildscripts
-echo "Switched to taoshan"
+sed -i -e 's/CURRENTDEVICE=grouper/CURRENTDEVICE=mako/' ./config.buildscripts
+echo "Switched to mako"
 fi
 ./update.sh -m
 }

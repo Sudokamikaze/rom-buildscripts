@@ -57,7 +57,7 @@ fi
 
 croot
 case "$CURRENTDEVICE" in
-  taoshan) breakfast taoshan
+  mako) breakfast mako
   ;;
   grouper) breakfast grouper
   ;;

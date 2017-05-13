@@ -15,7 +15,7 @@ CCACHEPATH=/ccache/android/
 BLOCK_BASED_OTA=false
 ROOT=true
 
-CURRENTDEVICE=taoshan
+CURRENTDEVICE=mako
 # ==================================================
 
 # ==============MONITORING SUBSYSTEM============

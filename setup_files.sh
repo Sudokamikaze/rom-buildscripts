@@ -24,7 +24,7 @@ function get_manifest {
   case "$device" in
   grouper) breakfast grouper
   ;;
-  taoshan) breakfast taoshan
+  mako) breakfast mako
   ;;
 esac
 }
@@ -40,7 +40,7 @@ unset testvar
 }
 
 echo "========================="
-echo "1. Xperia L(taoshan)"
+echo "1. Nexus 4(mako)"
 echo "2. Nexus 7(grouper)"
 echo "========================="
 echo "3. Fix python venv(for archlinux)"
@@ -48,7 +48,7 @@ echo "========================="
 echo -n "Choose device: "
 read choise
 case "$choise" in
-  1) choised=taoshan
+  1) choised=mako
   ;;
   2) choised=grouper
   ;;
@@ -59,9 +59,8 @@ case "$choise" in
 esac
 
 case "$choised" in
-  taoshan)
+  mako)
   desc1="MM. Marhsmallow(6.0.1)"
-  desc2="LP. Lollipop(5.1)"
   ;;
   grouper)
   desc1="MM. Marhsmallow(6.0.1)"
@@ -78,9 +77,6 @@ echo -n "Choose version: "
 read version
 case "$version" in
   MM|mm) romver=mm
-  gitmanifests=roomservice_"$romver"_"$choised"
-  ;;
-  LP|lp) romver=lp
   gitmanifests=roomservice_"$romver"_"$choised"
   ;;
   KK|kk)
