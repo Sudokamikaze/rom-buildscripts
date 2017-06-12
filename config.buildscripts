@@ -5,7 +5,6 @@ exit 1
 
 # ==================BUILD SUBSYSTEM==================
 IFARCHLINUX=true
-BUILDKITKAT=false
 MON=false
 
 CCACHEENABLE=true
