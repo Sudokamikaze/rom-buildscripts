@@ -41,16 +41,33 @@ echo $password | sudo -S ./mon_all.sh -d &
 unset $password
 fi
 
+function haste {
+  logstat=$(cat log.txt | grep "failed" | awk {'print $3'})
+  case "$logstat" in
+    failed) make installclean && build | tee -a ./log.txt
+    URL=$(cat log.txt | haste)
+    export HASTEURL=$URL
+    ./BuildStat/main.sh
+  ;;
+esac
+}
+
+function build {
+  croot
+  case "$CURRENTDEVICE" in
+    mako) breakfast mako
+    ;;
+    grouper) breakfast grouper
+    ;;
+    *) echo "Error, corrent typo"
+  esac
+  mka bacon
+}
 
 # PREPARE STAGE
 . build/envsetup.sh
 
-croot
-case "$CURRENTDEVICE" in
-  mako) breakfast mako
-  ;;
-  grouper) breakfast grouper
-  ;;
-  *) echo "Error, corrent typo"
-esac
-mka bacon
+build
+if [ "$HASTE" == "true" ]; then
+haste
+fi
