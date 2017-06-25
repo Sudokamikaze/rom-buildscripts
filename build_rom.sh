@@ -44,7 +44,7 @@ fi
 function haste {
   logstat=$(cat log.txt | grep "failed" | awk {'print $3'})
   case "$logstat" in
-    failed) make installclean && build | tee -a ./log.txt
+    failed) make installclean && build 
     URL=$(cat log.txt | haste)
     export HASTEURL=$URL
     ./BuildStat/main.sh
@@ -55,13 +55,13 @@ esac
 function build {
   croot
   case "$CURRENTDEVICE" in
-    mako) breakfast mako
+    mako) breakfast pixeldust_mako-userdebug 
     ;;
     grouper) breakfast grouper
     ;;
     *) echo "Error, corrent typo"
   esac
-  mka bacon
+  mka bacon | tee -a ./log.txt
 }
 
 # PREPARE STAGE
