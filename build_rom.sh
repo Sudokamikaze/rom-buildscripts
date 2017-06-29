@@ -10,6 +10,8 @@ eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep BUILDKITKAT= ./config.buildscripts)
 eval $(grep ROOT= ./config.buildscripts)
 eval $(grep MON= ./config.buildscripts)
+eval $(grep romname= ./config.buildscripts)
+
 
 case "$IFARCHLINUX" in
   true) source venv/bin/activate
@@ -44,10 +46,11 @@ fi
 function haste {
   logstat=$(cat log.txt | grep "failed" | awk {'print $3'})
   case "$logstat" in
-    failed) make installclean && build 
+    failed) make installclean && build
     URL=$(cat log.txt | haste)
     export HASTEURL=$URL
-    ./BuildStat/main.sh
+    ;;
+    *) ./BuildStat/main.sh
   ;;
 esac
 }
@@ -55,9 +58,9 @@ esac
 function build {
   croot
   case "$CURRENTDEVICE" in
-    mako) breakfast pixeldust_mako-userdebug 
+    mako) breakfast "$romname"_mako-userdebug
     ;;
-    grouper) breakfast grouper
+    grouper) breakfast "$romname"_grouper-userdebug
     ;;
     *) echo "Error, corrent typo"
   esac
