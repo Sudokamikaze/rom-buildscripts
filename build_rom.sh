@@ -44,6 +44,9 @@ unset $password
 fi
 
 function haste {
+  if [ -f "log.txt" ]; then
+  rm log.txt
+  fi
   logstat=$(cat log.txt | grep "failed" | awk {'print $3'})
   case "$logstat" in
     failed) make installclean && build
