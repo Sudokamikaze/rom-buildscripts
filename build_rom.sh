@@ -61,13 +61,7 @@ esac
 
 function build {
   croot
-  case "$CURRENTDEVICE" in
-    mako) breakfast "$romname"_mako-userdebug
-    ;;
-    grouper) breakfast "$romname"_grouper-userdebug
-    ;;
-    *) echo "Error, corrent typo"
-  esac
+  breakfast "$romname"_"$CURRENTDEVICE"-userdebug
   mka bacon | tee -a ./log.txt
 }
 

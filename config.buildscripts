@@ -8,6 +8,8 @@ IFARCHLINUX=true
 MON=false
 HASTE=true # Return status of build with logs to haste and telegram msg
 romname=pixeldust
+CURRENTDEVICE=mako
+
 
 CCACHEENABLE=true
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
@@ -16,7 +18,6 @@ CCACHEPATH=/ccache/android/
 BLOCK_BASED_OTA=false
 ROOT=true
 
-CURRENTDEVICE=mako
 # ==================================================
 
 # ==============MONITORING SUBSYSTEM============
