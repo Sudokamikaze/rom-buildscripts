@@ -52,9 +52,11 @@ function haste {
     failed) make installclean && build
     URL=$(cat log.txt | haste)
     export HASTEURL=$URL
+    export STATUS=FAILED
     ./BuildStat/main.sh
     ;;
-    *) ./BuildStat/main.sh
+    *) export STATUS=OK
+    ./BuildStat/main.sh
   ;;
 esac
 }
