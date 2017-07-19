@@ -2,18 +2,7 @@
 
 eval $(grep CCACHEENABLE= ./config.buildscripts)
 eval $(grep CCACHEPATH= ./config.buildscripts)
-eval $(grep CURRENTDEVICE= ./config.buildscripts)
 
-function call {
-  case "$call_var" in
-    ccache) ccache_settings
-    ;;
-    device) device_switch
-    ;;
-  esac
-}
-
-function ccache_settings {
   if [ "$CCACHEENABLE" != 'true' ]; then
       echo 'Error: CCache disabled in config.buildscripts Exiting...'
       exit 1
@@ -64,26 +53,3 @@ function device_switch {
   esac
 }
 
-function configure_device {
-if [ $CURRENTDEVICE == mako ]; then
-sed -i -e 's/CURRENTDEVICE=mako/CURRENTDEVICE=grouper/' ./config.buildscripts
-echo "Switched to grouper"
-elif [ $CURRENTDEVICE == grouper ]; then
-sed -i -e 's/CURRENTDEVICE=grouper/CURRENTDEVICE=mako/' ./config.buildscripts
-echo "Switched to mako"
-fi
-./update.sh -m
-}
-
-echo "1. CCACHE Settings"
-echo "2. Device switch"
-echo -n "Choose option: "
-read option
-case "$option" in
-  1) call_var=ccache
-  call
-  ;;
-  2) call_var=device
-  call
-  ;;
-esac
