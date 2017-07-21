@@ -1,15 +1,14 @@
 
 function main {
 git clone https://github.com/Sudokamikaze/rom-buildscripts.git
-mv rom-buildscripts/* ./
+mv rom-buildscripts/*.sh ./
 rm install_me.sh
 rm -rf rom-buildscripts
 }
 
 function ifinstalled {
-local varforcheck=$(ls | grep "build_rom.sh")
-if echo "$varforcheck" | grep -q "build_rom.sh"
-  then echo "Already installed, scripts will updated"
+if [ -f "build_rom.sh" ]; then
+  echo "Already installed, scripts will updated"
 else echo "Installing scripts..."
 fi
 }
