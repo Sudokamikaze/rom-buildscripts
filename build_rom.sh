@@ -7,23 +7,19 @@ eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep IFARCHLINUX= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
-eval $(grep BUILDKITKAT= ./config.buildscripts)
 eval $(grep ROOT= ./config.buildscripts)
 eval $(grep MON= ./config.buildscripts)
 eval $(grep romname= ./config.buildscripts)
 
-
-case "$IFARCHLINUX" in
-  true) source venv/bin/activate
+if [ $IFARCHLINUX == true ]; then
+    source venv/bin/activate
     export PATH="/usr/lib/jvm/java-8-openjdk/bin:$PATH"
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-  ;;
-esac
+fi
 
 if [ $CCACHEENABLE == true ]; then
 export USE_CCACHE=1
 export CCACHE_DIR="$CCACHEPATH"/.ccache
-export CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
 fi
 
@@ -44,24 +40,26 @@ unset $password
 fi
 
 function haste {
-  if [ -f "log.txt" ]; then
-  rm log.txt
-  fi
   logstat=$(cat log.txt | grep "failed" | awk {'print $3'})
   case "$logstat" in
-    failed) make installclean && build
-    URL=$(cat log.txt | haste)
+    failed) 
+    make installclean && mka bacon | tee -a ./err.txt
+    URL=$(cat err.txt | haste)
     export HASTEURL=$URL
     export STATUS=FAILED
-    ./BuildStat/main.sh
+    ./hastebot.sh
     ;;
     *) export STATUS=OK
-    ./BuildStat/main.sh
+    ./hastebot.sh
   ;;
 esac
 }
 
 function build {
+  if [ -f "log.txt" ]; then
+  rm log.old
+  mv log.txt log.old
+  fi
   croot
   breakfast "$romname"_"$CURRENTDEVICE"-userdebug
   mka bacon | tee -a ./log.txt
