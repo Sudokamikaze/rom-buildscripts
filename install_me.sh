@@ -13,6 +13,11 @@ else echo "Installing scripts..."
 fi
 }
 
+function buildhaste {
+git clone https://github.com/Sudokamikaze/BuildStat.git
+mv BuildStat/main.sh ./hastebot.sh
+rm -rf BuildStat
+}
 
 function ascii {
   echo -e "
@@ -39,3 +44,4 @@ clear
 ifinstalled
 ascii
 main
+buildhaste
