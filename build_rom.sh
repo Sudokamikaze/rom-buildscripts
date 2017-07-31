@@ -9,6 +9,7 @@ eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep ROOT= ./config.buildscripts)
 eval $(grep MON= ./config.buildscripts)
+eval $(grep HASTE= ./config.buildscripts)
 eval $(grep romname= ./config.buildscripts)
 
 if [ $IFARCHLINUX == true ]; then
