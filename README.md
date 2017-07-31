@@ -1,5 +1,5 @@
 # rom-buildscripts
-Scripts for building/setuping/checking roms for mako/grouper
+Scripts for building firmware for any device
 
 # Install
 Execute this command at top dir
@@ -14,26 +14,17 @@ Before you start work look in config.buildscripts, all settings in this config
 
 Setting | Description
 -------:|:-------------------------
-IFARCHLINUX=  | This var trigger python venv activation&creating
-BUILDKITKAT=  | This option is defined by default to auto
-CCACHEENABLE= | CCACHE activation
-CCACHESIZE=   | CCACHE size
-CCACHEPATH=    | CCACHE Path
-ROOT=         | Enabling root(For LineageOS)
-MON=          | Starting mon_all in quite mode, need sudo
-BLOCK_BASED_OTA=| This option called by build_rom and this disable block based,leave it to false
-CURRENTDEVICE= | Current device(Supported mako and grouper)
-HAVEBATTERY=| mon_all.sh will display current battery charge level
-CRITPERCENT=| When charge level reach this value laptop will shutdown
-CRITTEMP=| Critical temperature for HDD(if script reach this value PC will shutdown)
-CHECKTIME=| How often script check temperature and charge level
+IFARCHLINUX=  | Triger for python2 virtualvenv creation
+HASTE=        | Sends log file and status of build to yo in telegram
+romname=      | Name of your rom
+CCACHEENABLE= | Do you need CCACHE for yo building?
+CCACHESIZE=   | Size
+CCACHEPATH=   | Path
+ROOT=         | Some firmwares like LineageOS require this
+MON=          | Enabling monitoring of temperature in background
+CURRENTDEVICE=| Your device name, e.x mako
+HAVEBATTERY=| Triger for battery level monitoring
+CRITPERCENT=| When yo battery reach this level, laptop will poweroff
+CRITTEMP=| Critical temperature for HDD also PC shutdown if reach it
+CHECKTIME=| Checking time, leave it to default or decrease to 1 minute
 
-
-This script support only mako and grouper if you want you can modify manifests and look in build_rom.sh source and modify it might work
-
-
-if you want to switch build device open `config.buildscripts` and edit DEVICE section or run `./device_switcher.sh`
-
-##### If u have python related problems on archlinux
-then run `./setup_files.sh`
-At device selection write "fixpython" not numbers

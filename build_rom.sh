@@ -6,7 +6,6 @@ eval $(grep CCACHEPATH= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
 eval $(grep IFARCHLINUX= ./config.buildscripts)
 eval $(grep CURRENTDEVICE= ./config.buildscripts)
-eval $(grep BLOCK_BASED_OTA= ./config.buildscripts)
 eval $(grep ROOT= ./config.buildscripts)
 eval $(grep MON= ./config.buildscripts)
 eval $(grep HASTE= ./config.buildscripts)
@@ -22,10 +21,6 @@ if [ $CCACHEENABLE == true ]; then
 export USE_CCACHE=1
 export CCACHE_DIR="$CCACHEPATH"/.ccache
 prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
-fi
-
-if [ "$BLOCK_BASED_OTA" == "false" ]; then
-export BLOCK_BASED_OTA=false
 fi
 
 if [ "$ROOT" == "true" ]; then
