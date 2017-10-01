@@ -32,7 +32,6 @@ eval $(grep CCACHEPATH= ./config.buildscripts)
     *) echo Error
     ;;
   esac
-}
 
 function device_switch {
   if [ $CURRENTDEVICE == mako ]; then
