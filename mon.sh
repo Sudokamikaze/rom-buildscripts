@@ -17,16 +17,23 @@ function mon {
   chargelevel=$(cat /sys/class/power_supply/BAT0/capacity)
   fi
 
-  if (("$temperature" >= "$CRITTEMP")); then
-    logginghdd=true
-    logging
   case "$HAVEBATTERY" in
     true)
+    if (("$temperature" >= "$CRITTEMP")); then
+      logginghdd=true
+      logging
     elif (("$chargelevel" <= "$CRITPERCENT")); then
       loggingbatt=true
       logging
-    fi ;;
-  esac
+    fi
+    ;;
+    *)
+    if (("$temperature" >= "$CRITTEMP")); then
+      logginghdd=true
+      logging
+    fi
+    ;;
+esac
 }
 
 function logging {
@@ -45,12 +52,9 @@ poweroff
 fi
 }
 
-function run {
-  loop=yes
-  while [ "$loop" = "yes" ]; do
-  mon
-  sleep $CHECKTIME
-  done
-}
 
-run
+loop=yes
+while [ "$loop" = "yes" ]; do
+mon
+sleep $CHECKTIME
+done
