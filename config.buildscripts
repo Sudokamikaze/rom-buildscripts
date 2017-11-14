@@ -4,18 +4,19 @@ echo "Do not execure this"
 exit 1
 
 # ==================BUILD SUBSYSTEM==================
-IFARCHLINUX=true
+ARCHLINUX=true
 MON=false
-HASTE=true # Return status of build with logs to haste and telegram msg
-romname=pixeldust
-CURRENTDEVICE=mako
+
+HASTE_UPLOAD=false # Return status of build with logs to haste and telegram msg
+ROM=pixeldust
+DEVICE=mako
 
 
 CCACHEENABLE=true
 CCACHESIZE=10 # Define size of cache in GB, e.x CCACHESIZE=15 or CCACHESIZE=20 without "G" letter
 CCACHEPATH=/ccache/android/
 
-ROOT=true
+ROOT=true # Will work if ROM=LineageOS defined
 
 # ==================================================
 
