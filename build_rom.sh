@@ -9,6 +9,7 @@ eval $(grep ROOT= ./config.buildscripts)
 eval $(grep MON= ./config.buildscripts)
 eval $(grep ROM= ./config.buildscripts)
 eval $(grep HASTE_UPLOAD= ./config.buildscripts)
+eval $(grep UNIFIEDNLP_PATCH= ./config.buildscripts)
 
 function apply_values {
   if [ $ARCHLINUX == "true" ]; then
@@ -23,10 +24,10 @@ function apply_values {
       prebuilts/misc/linux-x86/ccache/ccache -M "$CCACHESIZE"G
   fi
 
-  if [ "$ROM" == "lineage" ]; then
-	if [ "$ROOT" == "true" ]; then
-      export WITH_SU=true
-fi
+if [ "$UNIFIEDNLP_PATCH" == "true" ]; then
+wget https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/f5a4569e9145d45678b76dc8cb5f4aa582c0ebdb/patches/android_frameworks_base-N.patch
+patch --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < android_frameworks_base-N.patch 
+rm android_frameworks_base-N.patch
 fi
 
 if [ "$MON" == "true" ]; then
@@ -58,8 +59,8 @@ function build {
   mv log.txt log.old
   fi
   croot
-  breakfast "$ROM"_"$DEVICE"-userdebug
-  mka bacon | tee -a ./log.txt
+  lunch "$ROM"_"$DEVICE"-userdebug
+  mka otapackage | tee -a ./log.txt
 }
 
 # PREPARE STAGE
